@@ -16,6 +16,14 @@ const LINES_DIR = path.join(ROOT, 'tools/lines');
 const CACHE_DIR = path.join(ROOT, 'tools/cache');
 const REPORT_DIR = path.join(ROOT, 'tools/report');
 const OUT_DIR = path.join(ROOT, 'data/openings');
+// .env (в .gitignore): LICHESS_TOKEN=...
+const envFile = path.join(ROOT, '.env');
+if (existsSync(envFile)) {
+  for (const line of readFileSync(envFile, 'utf8').split('\n')) {
+    const m = line.match(/^\s*([A-Z_]+)\s*=\s*(.*)\s*$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, '');
+  }
+}
 const TOKEN = process.env.LICHESS_TOKEN;
 const EXPLORER = 'https://explorer.lichess.org/masters';
 const MIN_SHARE = 0.02; // ход считается «подтверждённым», если его доля ≥ 2 %
@@ -124,7 +132,7 @@ async function build(id) {
     explorerByKey[key] = data;
     const total = data.moves.reduce((a, m) => a + m.white + m.draws + m.black, 0) || 1;
     for (const edge of nodes[key].moves.values()) {
-      const m = data.moves.find((x) => x.uci === edge.uci);
+      const m = data.moves.find((x) => sanKey(x.san) === sanKey(edge.san));
       if (m) {
         const games = m.white + m.draws + m.black;
         edge.stats = {
@@ -141,6 +149,68 @@ async function build(id) {
   }
   if (TOKEN) console.log(`explorer: запрошено/из кэша ${fetched} позиций`);
 
+  // ---------- автодополнение: популярные ответы соперника, не покрытые курируемыми вариантами ----------
+  // Релевантность: в основных линиях — ходы обеих сторон; в служебной линии за чёрных (anti) — только ходы белых;
+  // в служебной линии за белых (sidelines) — только ходы чёрных. Достраиваем главную линию базы на `plies` полуходов.
+  const ax = src.autoExtend;
+  const autoAdded = [];
+  if (ax && statsAvailable) {
+    const lineSide = new Map(src.lines.map((l) => [l.id, l.always ? l.side : 'both']));
+    const queue = Object.keys(nodes).filter((k) => nodes[k].moves.size);
+    const seen = new Set(queue);
+    while (queue.length) {
+      const key = queue.shift();
+      const node = nodes[key];
+      const ply = Math.min(...[...node.moves.values()].map((m) => m.ply)) - 1;
+      if (ply < 2 || ply >= ax.maxPly) continue;
+      const data = explorerByKey[key] || (explorerByKey[key] = await explorer(key + ' 0 1'));
+      if (!data) continue;
+      const stm = sideToMove(key);
+      const tags = new Set([...node.moves.values()].flatMap((m) => [...m.lines]));
+      const relTags = [...tags].filter((t) => lineSide.get(t) === 'both' || lineSide.get(t) !== stm);
+      if (!relTags.length) continue;
+      const total = data.moves.reduce((a, m) => a + m.white + m.draws + m.black, 0) || 1;
+      for (const m of data.moves) {
+        const games = m.white + m.draws + m.black;
+        if (games < ax.minGames || games / total < ax.minShare) continue;
+        if ([...node.moves.values()].some((e) => sanKey(e.san) === sanKey(m.san))) continue;
+        // достраиваем линию
+        const chess = new Chess(key + ' 0 1');
+        let curKey = key;
+        let curData = data;
+        let san = m.san;
+        let depth = 0;
+        while (san && depth < ax.plies) {
+          const mv = chess.move(san);
+          if (!mv) break;
+          const uci = mv.from + mv.to + (mv.promotion || '');
+          const nextKey = fenKey(chess.fen());
+          const cur = (nodes[curKey] ||= { moves: new Map() });
+          let edge = [...cur.moves.values()].find((e) => e.uci === uci);
+          if (!edge) {
+            const em = curData.moves.find((x) => sanKey(x.san) === sanKey(mv.san));
+            const g = em ? em.white + em.draws + em.black : 0;
+            const t = curData.moves.reduce((a, x) => a + x.white + x.draws + x.black, 0) || 1;
+            edge = { san: mv.san, uci, to: nextKey, comment: '', lines: new Set(relTags), ply: ply + depth + 1, auto: true,
+              stats: { games: g, share: +(g / t).toFixed(3), white: em ? +(em.white / g).toFixed(3) : 0, draws: em ? +(em.draws / g).toFixed(3) : 0, black: em ? +(em.black / g).toFixed(3) : 0 } };
+            cur.moves.set(uci, edge);
+            autoAdded.push({ key: curKey, edge });
+          } else {
+            for (const t of relTags) edge.lines.add(t);
+            if (nodes[nextKey]) break; // влились в существующий узел (транспозиция)
+          }
+          curKey = nextKey;
+          curData = explorerByKey[curKey] || (explorerByKey[curKey] = await explorer(curKey + ' 0 1'));
+          if (!curData) break;
+          if (!seen.has(curKey)) { seen.add(curKey); }
+          san = curData.moves[0]?.san;
+          depth++;
+        }
+      }
+    }
+    console.log(`автодополнение: добавлено ${autoAdded.length} ходов`);
+  }
+
   // сериализация: ходы в узле сортируем по числу партий
   const outNodes = {};
   for (const [key, node] of Object.entries(nodes)) {
@@ -153,6 +223,7 @@ async function build(id) {
         comment: m.comment,
         lines: [...m.lines],
         ...(m.stats ? { stats: m.stats } : {}),
+        ...(m.auto ? { auto: true } : {}),
       })),
     };
   }
@@ -196,11 +267,11 @@ async function build(id) {
       for (const edge of node.moves.values()) {
         if (!edge.stats || edge.stats.share < MIN_SHARE) weak.push(`- ${pathSan} **${edge.san}** — доля ${((edge.stats?.share ?? 0) * 100).toFixed(1)} % (${edge.stats?.games ?? 0} партий) [${[...edge.lines]}]`);
       }
-      if (ply < MAX_REPORT_PLY) {
+      if (ply >= 2 && ply < MAX_REPORT_PLY) {
         for (const m of data.moves) {
           const games = m.white + m.draws + m.black;
           const share = games / total;
-          if (share >= UNCOVERED_SHARE && !node.moves.has(m.uci)) {
+          if (share >= UNCOVERED_SHARE && ![...node.moves.values()].some((e) => sanKey(e.san) === sanKey(m.san))) {
             const who = sideToMove(key) === 'white' ? 'белые' : 'чёрные';
             uncovered.push(`- ${pathSan} → **${m.san}** (${who}, ${(share * 100).toFixed(0)} %, ${games} партий) — не покрыт графом`);
           }
@@ -209,6 +280,11 @@ async function build(id) {
     }
     rep.push(`## Ходы с долей < ${MIN_SHARE * 100} % в базе мастеров (проверить!)`, '', ...(weak.length ? weak : ['- нет']), '');
     rep.push(`## Популярные (≥ ${UNCOVERED_SHARE * 100} %) ответы, не покрытые графом`, '', ...(uncovered.length ? uncovered : ['- нет']), '');
+  }
+  if (autoAdded.length) {
+    rep.push(`## Автодополненные ходы (без аннотаций) — ${autoAdded.length}`, '');
+    for (const { key, edge } of autoAdded) rep.push(`- ${pathTo(key)} **${edge.san}** (${(edge.stats.share * 100).toFixed(0)} %, ${edge.stats.games}) [${[...edge.lines]}]`);
+    rep.push('');
   }
   rep.push('## Линии', '');
   for (const l of out.lines) {
@@ -255,6 +331,9 @@ async function build(id) {
     return pgnString(sans) || '(старт)';
   }
 }
+
+// Рокировка у Lichess в UCI записывается как e1h1, поэтому сверяем по SAN.
+const sanKey = (san) => san.replace(/[+#!?]/g, '');
 
 function pgnString(sans) {
   return sans.map((s, i) => (i % 2 === 0 ? `${i / 2 + 1}.${s}` : s)).join(' ');

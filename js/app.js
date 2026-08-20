@@ -2,7 +2,7 @@ import { createBoard } from './board.js';
 import { createTrainer, selectLines } from './trainer.js';
 import { loadIndex, loadOpening } from './openings.js';
 import { keyToFen } from './fen.js';
-import { renderLinesPreview, renderStatus, renderMoves, renderFeedback, renderLineDump } from './ui.js';
+import { renderLinesPreview, renderStatus, renderMoves, renderFeedback, renderLineDump, statsLine } from './ui.js';
 
 const $ = (id) => document.getElementById(id);
 const SETTINGS_KEY = 'open_game.settings';
@@ -127,7 +127,7 @@ function scheduleOpponent() {
     const mv = trainer.opponentMove();
     if (mv) {
       syncBoard([mv.uci.slice(0, 2), mv.uci.slice(2, 4)]);
-      if (settings.comments && mv.comment) renderFeedback({ kind: '', title: `Соперник: ${mv.san}`, text: mv.comment });
+      if (settings.comments) renderFeedback({ kind: '', title: `Соперник: ${mv.san}`, text: mv.comment, stats: statsLine(mv) });
     }
     if (trainer.state.status === 'success') onSuccess();
   }, OPPONENT_DELAY);
@@ -145,6 +145,7 @@ function onUserMove(uci, san) {
       kind: 'ok',
       title: `✔ ${res.move.san}`,
       text: settings.comments ? res.move.comment : '',
+      stats: settings.comments ? statsLine(res.move) : '',
       alternatives: settings.comments ? res.alternatives : [],
     });
     if (trainer.state.status === 'success') onSuccess();
@@ -162,6 +163,7 @@ function onUserMove(uci, san) {
       kind: 'bad',
       title: `✘ ${san} — не книжный ход. Правильно: ${res.expected.map((m) => m.san).join(' или ')}`,
       text: best && settings.comments ? best.comment : '',
+      stats: best && settings.comments ? statsLine(best) : '',
     });
   }
 }

@@ -60,7 +60,15 @@ export function renderMoves(history, wrong) {
   ol.scrollTop = ol.scrollHeight;
 }
 
-export function renderFeedback({ kind, title, text, alternatives = [] } = {}) {
+/** Короткая строка статистики хода из базы мастеров. */
+export function statsLine(move) {
+  const st = move?.stats;
+  if (!st || !st.games) return '';
+  const pct = (x) => Math.round(x * 100);
+  return `База мастеров: ${pct(st.share)} % партий (${st.games}), результат ${pct(st.white)}/${pct(st.draws)}/${pct(st.black)}.`;
+}
+
+export function renderFeedback({ kind, title, text, stats, alternatives = [] } = {}) {
   const box = $('feedback');
   if (!kind) {
     box.hidden = true;
@@ -75,6 +83,12 @@ export function renderFeedback({ kind, title, text, alternatives = [] } = {}) {
   if (text) {
     const p = document.createElement('p');
     p.textContent = text;
+    box.append(p);
+  }
+  if (stats) {
+    const p = document.createElement('p');
+    p.className = 'alt';
+    p.textContent = stats;
     box.append(p);
   }
   if (alternatives.length) {
