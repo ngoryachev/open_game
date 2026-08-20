@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Game — тренажёр дебютов</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♟</text></svg>">
+  <link rel="stylesheet" href="vendor/chessground/chessground.base.css">
+  <link rel="stylesheet" href="vendor/chessground/chessground.brown.css">
+  <link rel="stylesheet" href="vendor/chessground/chessground.cburnett.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1><a href="#" id="home-link">♟ Open Game</a></h1>
+    <span class="subtitle">тренажёр дебютных линий</span>
+  </header>
+
+  <main>
+    <!-- Экран настройки -->
+    <section id="screen-setup" class="screen">
+      <form id="setup-form" class="card">
+        <h2>Настройка тренировки</h2>
+
+        <label class="field">
+          <span>Дебют</span>
+          <select id="opening-select" required></select>
+        </label>
+
+        <fieldset class="field">
+          <legend>Сторона</legend>
+          <label class="radio"><input type="radio" name="side" value="white" checked> Белые</label>
+          <label class="radio"><input type="radio" name="side" value="black"> Чёрные</label>
+        </fieldset>
+
+        <label class="field">
+          <span>Глубина: <b id="depth-value">8</b> ходов</span>
+          <input type="range" id="depth" min="3" max="15" value="8">
+        </label>
+
+        <label class="field">
+          <span>Количество линий: <b id="lines-value">4</b></span>
+          <input type="range" id="lines-count" min="1" max="4" value="4">
+        </label>
+
+        <div class="field">
+          <span>Линии, которые будут тренироваться</span>
+          <ol id="lines-preview" class="lines-preview"></ol>
+        </div>
+
+        <label class="check"><input type="checkbox" id="opt-comments" checked> Показывать обоснование ходов</label>
+        <label class="check"><input type="checkbox" id="opt-dests" checked> Подсвечивать доступные ходы</label>
+
+        <button type="submit" class="btn primary">Начать тренировку</button>
+        <p id="setup-error" class="error" hidden></p>
+      </form>
+
+      <aside class="card about">
+        <h3>Как это работает</h3>
+        <p>Вы играете за выбранную сторону и должны делать книжные ходы выбранных линий. Соперник отвечает
+          ходами из базы мастерских партий (чем чаще ход встречается — тем вероятнее он будет выбран).</p>
+        <p>Верный ход — зелёная подсветка и короткое обоснование. Неверный — тренировка останавливается,
+          правильный ход показывается стрелкой.</p>
+        <p>Цель — быстро выучить основные линии и уверенно разыгрывать дебют в рапиде и блице.</p>
+      </aside>
+    </section>
+
+    <!-- Экран тренировки -->
+    <section id="screen-train" class="screen" hidden>
+      <div class="train-layout">
+        <div class="board-col">
+          <div id="board" class="cg-wrap"></div>
+        </div>
+        <div class="panel-col">
+          <div class="card status-card">
+            <div class="status-head">
+              <div>
+                <div id="train-opening" class="muted"></div>
+                <div id="train-line" class="line-name"></div>
+              </div>
+              <div id="train-status" class="status-badge"></div>
+            </div>
+            <div class="progress"><div id="progress-bar"></div></div>
+            <div class="muted small"><span id="progress-text"></span> · серия: <b id="streak">0</b></div>
+          </div>
+
+          <div id="feedback" class="card feedback" hidden></div>
+
+          <div class="card moves-card">
+            <ol id="moves-list" class="moves"></ol>
+          </div>
+
+          <div class="card actions">
+            <button id="btn-retry" class="btn primary">Ещё раз</button>
+            <button id="btn-show-line" class="btn">Показать линию</button>
+            <button id="btn-setup" class="btn">Настройки</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

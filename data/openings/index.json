@@ -1,0 +1,3 @@
+[
+  { "id": "sicilian", "name": "Сицилианская защита", "eco": "B20–B99", "sides": ["white", "black"], "file": "sicilian.json" }
+]

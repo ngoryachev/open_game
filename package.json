@@ -1,0 +1,13 @@
+{
+  "name": "open_game",
+  "version": "0.1.0",
+  "description": "Тренажёр дебютов: статическое веб-приложение + JSON-графы дебютов",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "npx --yes serve -l 5173 .",
+    "test": "node --test test/*.test.mjs",
+    "build:openings": "node tools/build-opening.mjs"
+  },
+  "license": "MIT"
+}
