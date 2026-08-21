@@ -39,6 +39,7 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
     expected: [], // книжные ходы, которые ожидались при ошибке
     wrong: null, // {uci, san}
     userMoves: 0,
+    mistakes: 0, // число ошибок за попытку
     reason: null, // 'depth' | 'book-end' при success
   };
 
@@ -115,15 +116,24 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
     return pick;
   }
 
-  /** Ход пользователя по UCI. Возвращает {ok, move|expected}. */
+  /**
+   * Ход пользователя по UCI. Возвращает {ok, move|expected}.
+   * После ошибки (status = fail) принимается только один из ожидаемых ходов — тогда тренировка продолжается
+   * (recovered: true), а ошибка остаётся в счётчике mistakes.
+   */
   function userMove(uci, san = uci) {
-    if (state.status !== 'playing' || toMove() !== side) return { ok: false, ignored: true };
+    if (!['playing', 'fail'].includes(state.status) || toMove() !== side) return { ok: false, ignored: true };
     const moves = bookMoves();
     const hit = moves.find((m) => m.uci === uci);
     if (hit) {
+      const recovered = state.status === 'fail';
+      state.status = 'playing';
+      state.wrong = null;
+      state.expected = [];
       apply(hit, 'user');
-      return { ok: true, move: hit, alternatives: moves.filter((m) => m !== hit) };
+      return { ok: true, move: hit, recovered, alternatives: moves.filter((m) => m !== hit) };
     }
+    if (state.status !== 'fail') state.mistakes += 1;
     state.status = 'fail';
     state.expected = moves;
     state.wrong = { uci, san };
@@ -142,6 +152,6 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
     currentLines,
     opponentMove,
     userMove,
-    isUserTurn: () => state.status === 'playing' && toMove() === side,
+    isUserTurn: () => ['playing', 'fail'].includes(state.status) && toMove() === side,
   };
 }

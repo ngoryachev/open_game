@@ -30,9 +30,9 @@ export function renderStatus(trainer, opening, streak) {
     cur.length === 1 ? cur[0].name : cur.length === mainAll.length ? 'Линия определится по ходам' : cur.map((l) => l.name).join(' / ');
   const badge = $('train-status');
   badge.className = `status-badge ${st.status}`;
-  badge.textContent = { playing: trainer.isUserTurn() ? 'Ваш ход' : 'Ход соперника', success: 'Линия пройдена', fail: 'Ошибка' }[st.status];
+  badge.textContent = { playing: trainer.isUserTurn() ? 'Ваш ход' : 'Ход соперника', success: 'Линия пройдена', fail: 'Ошибка — сделайте правильный ход' }[st.status];
   $('progress-bar').style.width = `${Math.min(100, (st.userMoves / trainer.depth) * 100)}%`;
-  $('progress-text').textContent = `${st.userMoves} / ${trainer.depth} ходов`;
+  $('progress-text').textContent = `${st.userMoves} / ${trainer.depth} ходов · ошибок: ${st.mistakes}`;
   $('streak').textContent = streak;
 }
 

@@ -14,6 +14,7 @@ let opening = null;
 let trainer = null;
 let board = null;
 let streak = 0;
+let failRecorded = false;
 let settings = loadSettings();
 
 function loadSettings() {
@@ -98,6 +99,7 @@ function showScreen(name) {
 // ---------- тренировка ----------
 function startTraining() {
   trainer = createTrainer({ opening, side: settings.side, depth: settings.depth, linesCount: settings.linesCount });
+  failRecorded = false;
   board.setOrientation(settings.side);
   board.setShowDests(settings.dests);
   board.setShapes([]);
@@ -139,11 +141,12 @@ function onUserMove(uci, san) {
   const from = uci.slice(0, 2);
   const to = uci.slice(2, 4);
   if (res.ok) {
+    board.setShapes([]);
     board.setHighlights(new Map([[to, 'ok-move']]));
     syncBoard([from, to]);
     renderFeedback({
       kind: 'ok',
-      title: `✔ ${res.move.san}`,
+      title: res.recovered ? `✔ ${res.move.san} — верно, продолжаем` : `✔ ${res.move.san}`,
       text: settings.comments ? res.move.comment : '',
       stats: settings.comments ? statsLine(res.move) : '',
       alternatives: settings.comments ? res.alternatives : [],
@@ -152,8 +155,12 @@ function onUserMove(uci, san) {
     else scheduleOpponent();
   } else {
     streak = 0;
-    bumpProgress(trainer.currentLines().map((l) => l.id), false);
-    board.setPosition(keyToFen(trainer.state.key), { lastMove: [from, to], canMove: false });
+    if (!failRecorded) {
+      failRecorded = true; // ошибка по линии засчитывается один раз за попытку
+      bumpProgress(trainer.currentLines().map((l) => l.id), false);
+    }
+    // доска остаётся активной: нужно сделать правильный ход, чтобы продолжить
+    board.setPosition(keyToFen(trainer.state.key), { lastMove: [from, to], canMove: true });
     board.setHighlights(new Map([[to, 'bad-move']]));
     board.setShapes(res.expected.map((m, i) => ({ orig: m.uci.slice(0, 2), dest: m.uci.slice(2, 4), brush: i === 0 ? 'green' : 'blue' })));
     renderStatus(trainer, opening, streak);
@@ -161,7 +168,7 @@ function onUserMove(uci, san) {
     const best = res.expected[0];
     renderFeedback({
       kind: 'bad',
-      title: `✘ ${san} — не книжный ход. Правильно: ${res.expected.map((m) => m.san).join(' или ')}`,
+      title: `✘ ${san} — не книжный ход. Правильно: ${res.expected.map((m) => m.san).join(' или ')}. Сделайте его, чтобы продолжить.`,
       text: best && settings.comments ? best.comment : '',
       stats: best && settings.comments ? statsLine(best) : '',
     });
@@ -169,12 +176,14 @@ function onUserMove(uci, san) {
 }
 
 function onSuccess() {
-  streak += 1;
-  bumpProgress(trainer.currentLines().map((l) => l.id), true);
+  const { mistakes } = trainer.state;
+  streak = mistakes ? 0 : streak + 1;
+  if (mistakes === 0) bumpProgress(trainer.currentLines().map((l) => l.id), true);
   board.lock();
   renderStatus(trainer, opening, streak);
-  const reason = trainer.state.reason === 'depth' ? `Вы сделали ${trainer.depth} книжных ходов подряд.` : 'Книжная линия закончилась.';
-  renderFeedback({ kind: 'ok', title: '🎉 Линия пройдена!', text: `${reason} Нажмите «Ещё раз», чтобы закрепить.` });
+  const reason = trainer.state.reason === 'depth' ? `Вы сделали ${trainer.depth} книжных ходов.` : 'Книжная линия закончилась.';
+  const title = mistakes ? `Линия пройдена с ошибками: ${mistakes}` : '🎉 Линия пройдена без ошибок!';
+  renderFeedback({ kind: mistakes ? '' : 'ok', title, text: `${reason} Нажмите «Ещё раз», чтобы закрепить.` });
 }
 
 function toggleLineDump() {

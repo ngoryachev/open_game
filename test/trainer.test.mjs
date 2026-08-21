@@ -91,3 +91,18 @@ test('соперник выбирает ход с весом по партиям
   const mv = t.opponentMove();
   assert.ok(mv);
 });
+
+test('после ошибки принимается только правильный ход, и тренировка продолжается', () => {
+  const t = createTrainer({ opening, side: 'black', depth: 3, linesCount: 1, rng: () => 0 });
+  t.opponentMove();
+  assert.equal(t.userMove('h7h6', 'h6').ok, false);
+  assert.equal(t.state.status, 'fail');
+  assert.equal(t.state.mistakes, 1);
+  assert.equal(t.userMove('a7a6', 'a6').ok, false); // снова мимо — ошибка не удваивается
+  assert.equal(t.state.mistakes, 1);
+  const res = t.userMove('c7c5', 'c5');
+  assert.equal(res.ok, true);
+  assert.equal(res.recovered, true);
+  assert.equal(t.state.status, 'playing');
+  assert.equal(t.state.userMoves, 1);
+});
