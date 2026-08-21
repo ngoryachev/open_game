@@ -15,6 +15,7 @@ let trainer = null;
 let board = null;
 let streak = 0;
 let failRecorded = false;
+let hintsUsed = 0;
 let settings = loadSettings();
 
 function loadSettings() {
@@ -100,6 +101,7 @@ function showScreen(name) {
 function startTraining() {
   trainer = createTrainer({ opening, side: settings.side, depth: settings.depth, linesCount: settings.linesCount });
   failRecorded = false;
+  hintsUsed = 0;
   board.setOrientation(settings.side);
   board.setShowDests(settings.dests);
   board.setShapes([]);
@@ -116,6 +118,7 @@ function syncBoard(lastMove) {
   board.setPosition(keyToFen(trainer.state.key), { lastMove, canMove: trainer.isUserTurn() });
   renderStatus(trainer, opening, streak);
   renderMoves(trainer.state.history, trainer.state.wrong);
+  $('btn-hint').disabled = !trainer.isUserTurn();
 }
 
 function scheduleOpponent() {
@@ -129,7 +132,7 @@ function scheduleOpponent() {
     const mv = trainer.opponentMove();
     if (mv) {
       syncBoard([mv.uci.slice(0, 2), mv.uci.slice(2, 4)]);
-      if (settings.comments) renderFeedback({ kind: '', title: `Соперник: ${mv.san}`, text: mv.comment, stats: statsLine(mv) });
+      if (settings.comments) renderFeedback({ kind: 'info', title: `Соперник: ${mv.san}`, text: mv.comment, stats: statsLine(mv) });
     }
     if (trainer.state.status === 'success') onSuccess();
   }, OPPONENT_DELAY);
@@ -177,13 +180,27 @@ function onUserMove(uci, san) {
 
 function onSuccess() {
   const { mistakes } = trainer.state;
-  streak = mistakes ? 0 : streak + 1;
-  if (mistakes === 0) bumpProgress(trainer.currentLines().map((l) => l.id), true);
+  streak = mistakes || hintsUsed ? 0 : streak + 1;
+  if (mistakes === 0 && hintsUsed === 0) bumpProgress(trainer.currentLines().map((l) => l.id), true);
   board.lock();
   renderStatus(trainer, opening, streak);
   const reason = trainer.state.reason === 'depth' ? `Вы сделали ${trainer.depth} книжных ходов.` : 'Книжная линия закончилась.';
-  const title = mistakes ? `Линия пройдена с ошибками: ${mistakes}` : '🎉 Линия пройдена без ошибок!';
-  renderFeedback({ kind: mistakes ? '' : 'ok', title, text: `${reason} Нажмите «Ещё раз», чтобы закрепить.` });
+  const title = mistakes ? `Линия пройдена с ошибками: ${mistakes}` : hintsUsed ? `Линия пройдена (подсказок: ${hintsUsed})` : '🎉 Линия пройдена без ошибок!';
+  renderFeedback({ kind: mistakes ? 'info' : 'ok', title, text: `${reason} Нажмите «Ещё раз», чтобы закрепить.` });
+}
+
+function showHint() {
+  if (!trainer || !trainer.isUserTurn()) return;
+  const moves = trainer.bookMoves();
+  if (!moves.length) return;
+  hintsUsed += 1;
+  board.setShapes(moves.map((m, i) => ({ orig: m.uci.slice(0, 2), dest: m.uci.slice(2, 4), brush: i === 0 ? 'green' : 'blue' })));
+  renderFeedback({
+    kind: 'info',
+    title: `💡 Книжные ходы: ${moves.map((m) => m.san).join(', ')}`,
+    text: settings.comments ? moves[0].comment : '',
+    stats: settings.comments ? statsLine(moves[0]) : '',
+  });
 }
 
 function toggleLineDump() {
@@ -227,6 +244,7 @@ async function init() {
   });
   $('btn-retry').addEventListener('click', startTraining);
   $('btn-show-line').addEventListener('click', toggleLineDump);
+  $('btn-hint').addEventListener('click', showHint);
   $('btn-setup').addEventListener('click', () => showScreen('setup'));
   $('home-link').addEventListener('click', (e) => {
     e.preventDefault();
