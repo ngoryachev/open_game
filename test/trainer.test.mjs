@@ -106,3 +106,49 @@ test('после ошибки принимается только правиль
   assert.equal(t.state.status, 'playing');
   assert.equal(t.state.userMoves, 1);
 });
+
+const traps = JSON.parse(readFileSync(new URL('../data/openings/traps.json', import.meta.url), 'utf8'));
+
+test('ловушки: граф легален, по 10 линий за каждую сторону, mainPath проходит по графу', () => {
+  for (const side of ['white', 'black']) assert.equal(traps.lines.filter((l) => l.side === side).length, 10);
+  for (const [key, node] of Object.entries(traps.nodes)) {
+    const chess = new Chess(keyToFen(key));
+    for (const m of node.moves) {
+      const mv = chess.move(m.san);
+      assert.equal(fenKey(chess.fen()), m.to, `to ${key} ${m.san}`);
+      chess.undo();
+      assert.equal(mv.from + mv.to + (mv.promotion || ''), m.uci);
+    }
+  }
+  for (const line of traps.lines) {
+    let key = traps.start;
+    for (const san of line.mainPath) {
+      const edge = traps.nodes[key].moves.find((m) => m.san === san);
+      assert.ok(edge?.lines.includes(line.id), `${line.id}: нет ребра ${san}`);
+      key = edge.to;
+    }
+    // последний ход линии делает сторона, которая ставит ловушку
+    assert.equal(line.mainPath.length % 2 === 1 ? 'white' : 'black', line.side, line.id);
+  }
+});
+
+test('ловушки: соперник выбирает ходы по числу линий, каждая ловушка проходится до конца', () => {
+  assert.equal(traps.weighting, 'lines');
+  for (const side of ['white', 'black']) {
+    const reached = new Set();
+    for (let i = 0; i < 200; i++) {
+      const t = createTrainer({ opening: traps, side, depth: 15, linesCount: 10 });
+      while (t.state.status === 'playing') {
+        if (t.isUserTurn()) {
+          const moves = t.bookMoves();
+          const mv = moves[Math.floor(Math.random() * moves.length)];
+          assert.ok(t.userMove(mv.uci, mv.san).ok);
+        } else t.opponentMove();
+      }
+      assert.equal(t.state.status, 'success');
+      assert.equal(t.state.reason, 'book-end');
+      for (const l of t.currentLines()) reached.add(l.id);
+    }
+    assert.equal(reached.size, 10, `${side}: пройдены не все ловушки: ${[...reached]}`);
+  }
+});

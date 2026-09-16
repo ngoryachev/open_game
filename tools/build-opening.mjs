@@ -234,6 +234,7 @@ async function build(id) {
     description: src.description || '',
     generated: new Date().toISOString().slice(0, 10),
     statsSource: statsAvailable ? 'lichess-masters' : null,
+    ...(src.weighting ? { weighting: src.weighting } : {}),
     start,
     lines: src.lines.map((l) => ({
       id: l.id,

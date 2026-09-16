@@ -101,7 +101,12 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
       return null;
     }
     // Вес: число партий из базы мастеров; без статистики — сколько линий проходит через ход (прокси популярности).
-    const weights = moves.map((m) => Math.max(1, m.stats?.games ?? (m.lines?.length ?? 1) ** 2));
+    // weighting: 'lines' (ловушки) — только число выбранных линий через ход: ошибочные ходы у мастеров редки,
+    // а каждая линия должна выпадать примерно одинаково часто.
+    const byLines = (m) => (m.lines || []).filter((id) => mainIds.has(id) || alwaysIds.has(id)).length;
+    const weights = moves.map((m) =>
+      Math.max(1, opening.weighting === 'lines' ? byLines(m) : m.stats?.games ?? (m.lines?.length ?? 1) ** 2),
+    );
     const total = weights.reduce((a, b) => a + b, 0);
     let r = rng() * total;
     let pick = moves[moves.length - 1];
