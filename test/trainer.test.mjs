@@ -99,6 +99,50 @@ test('при явном ограничении успех наступает п�
   assert.equal(t.state.userMoves, 3);
 });
 
+// Последовательность rng, повторяющаяся по кругу: воспроизводимый ход партии в тестах.
+const cycle = (...xs) => {
+  let i = 0;
+  return () => xs[i++ % xs.length];
+};
+
+// ui.js renderStatus: знаменатель прогресса — явное ограничение, иначе длина самой длинной возможной линии.
+const progressTotal = (t) => t.depth ?? t.userMovesTotal();
+
+test('ограничение длиннее линии не мешает завершению по книге', () => {
+  const t = createTrainer({ opening, side: 'white', depth: 15, linesCount: 4, rng: () => 0 });
+  playThrough(t);
+  assert.equal(t.state.status, 'success');
+  assert.equal(t.state.reason, 'book-end', 'линия кончилась раньше ограничения — причина должна быть book-end');
+  assert.ok(t.state.userMoves < 15, `ожидался обрыв по книге раньше 15 ходов: ${t.state.userMoves}`);
+});
+
+test('прогресс: при снятом ограничении знаменатель не меньше числа сделанных ходов', () => {
+  const t = createTrainer({ opening, side: 'white', linesCount: 1, rng: cycle(0.55, 0.5) });
+  const bad = [];
+  while (t.state.status === 'playing') {
+    if (t.isUserTurn()) {
+      const mv = t.bookMoves()[0];
+      t.userMove(mv.uci, mv.san);
+    } else t.opponentMove();
+    const total = progressTotal(t);
+    if (t.state.userMoves > total) bad.push(`${t.state.userMoves} / ${total}`);
+  }
+  assert.deepEqual(bad, [], `прогресс показывает больше ходов, чем всего: ${bad.join(', ')}`);
+});
+
+test('прогресс: знаменатель не обнуляется, когда совместимых линий не осталось', () => {
+  const t = createTrainer({ opening, side: 'white', linesCount: 2, rng: cycle(0.9, 0) });
+  const zero = [];
+  while (t.state.status === 'playing') {
+    if (t.isUserTurn()) {
+      const mv = t.bookMoves()[0];
+      t.userMove(mv.uci, mv.san);
+    } else t.opponentMove();
+    if (progressTotal(t) === 0) zero.push(t.state.userMoves);
+  }
+  assert.deepEqual(zero, [], `знаменатель прогресса обнулился после ходов пользователя: ${zero.join(', ')}`);
+});
+
 test('соперник выбирает ход с весом по партиям', () => {
   const t = createTrainer({ opening, side: 'black', linesCount: 4, rng: () => 0.999 });
   const mv = t.opponentMove();
@@ -163,6 +207,16 @@ test('ловушки: соперник выбирает ходы по числу
       for (const l of t.currentLines()) reached.add(l.id);
     }
     assert.equal(reached.size, 10, `${side}: пройдены не все ловушки: ${[...reached]}`);
+  }
+});
+
+test('ловушки: явное ограничение глубины завершает партию по depth', () => {
+  for (const line of traps.lines) {
+    const t = createTrainer({ opening: { ...traps, lines: [line] }, side: line.side, depth: 3, linesCount: 1, rng: () => 0 });
+    playThrough(t);
+    assert.equal(t.state.status, 'success', line.id);
+    assert.equal(t.state.reason, 'depth', `${line.id}: ограничение глубины должно работать и для ловушек`);
+    assert.equal(t.state.userMoves, 3, line.id);
   }
 });
 
