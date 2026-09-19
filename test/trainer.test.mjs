@@ -247,3 +247,108 @@ test('ловушки: каждая из 20 ловушек доигрываетс
     assert.equal(t.userMovesTotal(), t.state.userMoves, line.id);
   }
 });
+
+// ---------- поведение «до конца линии» по умолчанию ----------
+
+test('флаг playToEnd убран из данных, исходников и API тренажёра', () => {
+  for (const o of [opening, traps]) assert.equal('playToEnd' in o, false, `${o.id}: playToEnd остался в графе`);
+  const t = createTrainer({ opening: traps, side: 'white', linesCount: 10, rng: () => 0 });
+  assert.equal('playToEnd' in t, false, 'тренажёр всё ещё отдаёт playToEnd');
+  for (const f of ['tools/lines/traps.lines.json', 'tools/build-opening.mjs', 'js/trainer.js', 'js/app.js', 'js/ui.js', 'index.html']) {
+    const src = readFileSync(new URL(`../${f}`, import.meta.url), 'utf8');
+    assert.equal(src.includes('playToEnd'), false, `${f}: упоминание playToEnd`);
+  }
+});
+
+test('без depth ограничения нет: trainer.depth === null (ui берёт userMovesTotal)', () => {
+  const t = createTrainer({ opening, side: 'white', linesCount: 4, rng: () => 0 });
+  assert.equal(t.depth, null);
+  assert.equal(progressTotal(t), t.userMovesTotal());
+  const limited = createTrainer({ opening, side: 'white', depth: 5, linesCount: 4, rng: () => 0 });
+  assert.equal(progressTotal(limited), 5);
+});
+
+// Детерминированный ГПСЧ: воспроизводимые прогоны без Math.random.
+const seeded = (seed) => () => {
+  seed = (seed + 0x6d2b79f5) | 0;
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+
+test('без ограничения любая партия кончается по книге, а прогресс сходится к 100 %', () => {
+  for (const [name, op] of [['sicilian', opening], ['traps', traps]]) {
+    for (const side of ['white', 'black']) {
+      for (const linesCount of [1, 4, 10]) {
+        for (let s = 0; s < 40; s++) {
+          const t = createTrainer({ opening: op, side, linesCount, rng: seeded(s * 31 + linesCount) });
+          const tag = `${name}/${side}/K=${linesCount}/seed=${s}`;
+          let guard = 0;
+          while (t.state.status === 'playing') {
+            assert.ok(guard++ < 200, `${tag}: партия не заканчивается`);
+            if (t.isUserTurn()) {
+              const mv = t.bookMoves()[0];
+              t.userMove(mv.uci, mv.san);
+            } else t.opponentMove();
+            assert.ok(t.state.userMoves <= progressTotal(t), `${tag}: ${t.state.userMoves} / ${progressTotal(t)}`);
+          }
+          assert.equal(t.state.status, 'success', tag);
+          assert.equal(t.state.reason, 'book-end', tag);
+          assert.equal(t.bookMoves().length, 0, `${tag}: остались книжные ходы`);
+          assert.equal(t.userMovesTotal(), t.state.userMoves, `${tag}: прогресс не дошёл ровно до 100 %`);
+        }
+      }
+    }
+  }
+});
+
+test('явное ограничение работает для обеих сторон и на границе depth = 1', () => {
+  for (const side of ['white', 'black']) {
+    for (const depth of [1, 2, 5]) {
+      const t = createTrainer({ opening, side, depth, linesCount: 4, rng: seeded(depth) });
+      playThrough(t);
+      assert.equal(t.state.status, 'success');
+      assert.equal(t.state.reason, 'depth', `${side}/depth=${depth}`);
+      assert.equal(t.state.userMoves, depth, `${side}/depth=${depth}`);
+      assert.equal(progressTotal(t), depth, `${side}/depth=${depth}: знаменатель прогресса — само ограничение`);
+    }
+  }
+});
+
+test('userMovesTotal не зацикливается на графе с повтором позиции', () => {
+  // a -> b -> c -> d -> c (повтор позиции) и c -> e (конец книги)
+  const node = (key, moves) => [key, { moves }];
+  const mv = (san, to) => ({ san, uci: san, to, lines: ['x'], comment: '' });
+  const cyclic = {
+    id: 'cyclic',
+    start: 'a w - -',
+    lines: [{ id: 'x', name: 'x', side: 'white', priority: 1, mainPath: [] }],
+    nodes: Object.fromEntries([
+      node('a w - -', [mv('a1', 'b b - -')]),
+      node('b b - -', [mv('b1', 'c w - -')]),
+      node('c w - -', [mv('c1', 'd b - -'), mv('c2', 'e b - -')]),
+      node('d b - -', [mv('d1', 'c w - -')]),
+      node('e b - -', []),
+    ]),
+  };
+  const t = createTrainer({ opening: cyclic, side: 'white', linesCount: 1, rng: () => 0 });
+  const total = t.userMovesTotal();
+  assert.equal(Number.isFinite(total), true, 'userMovesTotal должен быть конечным при повторе позиции');
+  assert.ok(total >= 2, `ожидалось минимум 2 хода пользователя, получено ${total}`);
+});
+
+test('слайдер глубины: разметка и константы app.js согласованы, поле не прячется', () => {
+  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const app = readFileSync(new URL('../js/app.js', import.meta.url), 'utf8');
+  const slider = html.match(/<input[^>]*id="depth"[^>]*>/)?.[0];
+  assert.ok(slider, 'в index.html нет слайдера глубины');
+  const attr = (n) => +slider.match(new RegExp(`${n}="(\\d+)"`))?.[1];
+  const depthMax = +app.match(/DEPTH_MAX\s*=\s*(\d+)/)?.[1];
+  assert.equal(Number.isFinite(depthMax), true, 'в app.js нет DEPTH_MAX');
+  assert.equal(attr('max'), depthMax + 1, 'крайнее правое положение слайдера должно означать «до конца»');
+  assert.equal(attr('value'), attr('max'), 'по умолчанию слайдер стоит в положении «до конца линии»');
+  assert.ok(attr('min') >= 1 && attr('min') < depthMax);
+  assert.equal(html.includes('depth-field'), false, 'поле глубины больше не прячется и не нуждается в id');
+  assert.equal(app.includes('depth-field'), false, 'app.js всё ещё прячет поле глубины');
+  assert.ok(/id="depth-value"[^<]*>до конца линии</.test(html), 'подпись по умолчанию — «до конца линии»');
+});
