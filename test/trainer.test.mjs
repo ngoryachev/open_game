@@ -134,10 +134,11 @@ test('ловушки: граф легален, по 10 линий за кажд�
 
 test('ловушки: соперник выбирает ходы по числу линий, каждая ловушка проходится до конца', () => {
   assert.equal(traps.weighting, 'lines');
+  assert.equal(traps.playToEnd, true);
   for (const side of ['white', 'black']) {
     const reached = new Set();
     for (let i = 0; i < 200; i++) {
-      const t = createTrainer({ opening: traps, side, depth: 15, linesCount: 10 });
+      const t = createTrainer({ opening: traps, side, depth: 8, linesCount: 10 });
       while (t.state.status === 'playing') {
         if (t.isUserTurn()) {
           const moves = t.bookMoves();
@@ -150,5 +151,34 @@ test('ловушки: соперник выбирает ходы по числу
       for (const l of t.currentLines()) reached.add(l.id);
     }
     assert.equal(reached.size, 10, `${side}: пройдены не все ловушки: ${[...reached]}`);
+  }
+});
+
+test('ловушки: при глубине 8 каждая из 20 ловушек доигрывается до последнего хода линии', () => {
+  assert.equal(traps.lines.length, 20);
+  for (const line of traps.lines) {
+    let r = 0;
+    const opening = { ...traps, lines: [line] };
+    const t = createTrainer({ opening, side: line.side, depth: 8, linesCount: 1, rng: () => r });
+    assert.equal(t.playToEnd, true);
+    for (const san of line.mainPath) {
+      assert.equal(t.state.status, 'playing', `${line.id}: партия закончилась до ${san}`);
+      const moves = t.bookMoves();
+      if (t.isUserTurn()) {
+        const mv = moves.find((m) => m.san === san);
+        assert.ok(mv, `${line.id}: нет хода ${san}`);
+        assert.ok(t.userMove(mv.uci, mv.san).ok);
+      } else {
+        const k = moves.findIndex((m) => m.san === san);
+        assert.ok(k >= 0, `${line.id}: нет хода соперника ${san}`);
+        r = (k + 0.5) / moves.length;
+        assert.equal(t.opponentMove()?.san, san, line.id);
+      }
+    }
+    assert.equal(t.state.status, 'success', line.id);
+    assert.equal(t.state.reason, 'book-end', line.id);
+    assert.equal(t.state.history.length, line.mainPath.length, line.id);
+    assert.equal(t.state.history.at(-1).san, line.mainPath.at(-1), line.id);
+    assert.equal(t.userMovesTotal(), t.state.userMoves, line.id);
   }
 });

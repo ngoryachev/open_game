@@ -30,6 +30,8 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
   const lines = selectLines(opening, side, linesCount);
   const mainIds = new Set(lines.filter((l) => !l.always).map((l) => l.id));
   const alwaysIds = new Set(lines.filter((l) => l.always).map((l) => l.id));
+  // playToEnd (ловушки): глубина игнорируется, линия играется до последнего книжного хода.
+  const playToEnd = !!opening.playToEnd;
   if (mainIds.size + alwaysIds.size === 0) throw new Error(`Нет линий за ${side} в дебюте ${opening.id}`);
 
   const state = {
@@ -72,6 +74,13 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
     return lines.filter((l) => ids.has(l.id));
   }
 
+  /** Число ходов пользователя в самой длинной из ещё возможных линий (по mainPath). */
+  function userMovesTotal() {
+    const parity = side === 'white' ? 0 : 1;
+    const count = (l) => (l.mainPath || []).filter((_, i) => i % 2 === parity).length;
+    return Math.max(0, ...currentLines().map(count));
+  }
+
   function apply(move, by) {
     state.history.push({ san: move.san, uci: move.uci, comment: move.comment || '', by, lines: move.lines || [] });
     state.key = move.to;
@@ -81,7 +90,7 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
 
   function checkEnd() {
     if (state.status !== 'playing') return;
-    if (state.userMoves >= depth) {
+    if (!playToEnd && state.userMoves >= depth) {
       state.status = 'success';
       state.reason = 'depth';
       return;
@@ -151,10 +160,12 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
     },
     side,
     depth,
+    playToEnd,
     lines,
     bookMoves,
     toMove,
     currentLines,
+    userMovesTotal,
     opponentMove,
     userMove,
     isUserTurn: () => ['playing', 'fail'].includes(state.status) && toMove() === side,

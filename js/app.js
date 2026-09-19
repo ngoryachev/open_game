@@ -84,6 +84,7 @@ async function refreshPreview() {
   const entry = index.find((o) => o.id === settings.openingId);
   if (!entry) return;
   opening = await loadOpening(entry);
+  $('depth-field').hidden = !!opening.playToEnd;
   $('lines-count').max = Math.max(1, opening.lines.filter((l) => l.side === 'both' || l.side === settings.side).length);
   if (settings.linesCount > +$('lines-count').max) {
     $('lines-count').value = $('lines-count').max;
