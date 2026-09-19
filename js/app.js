@@ -8,6 +8,12 @@ const $ = (id) => document.getElementById(id);
 const SETTINGS_KEY = 'open_game.settings';
 const PROGRESS_KEY = 'open_game.progress';
 const OPPONENT_DELAY = 450;
+// Слайдер глубины: крайнее правое положение (DEPTH_NO_LIMIT) означает «до конца линии» — без ограничения.
+const DEPTH_MAX = 15;
+const DEPTH_NO_LIMIT = DEPTH_MAX + 1;
+const sliderToDepth = (v) => (v > DEPTH_MAX ? null : v);
+const depthToSlider = (d) => d ?? DEPTH_NO_LIMIT;
+const depthLabel = (d) => (d == null ? 'до конца линии' : `${d} ходов`);
 
 let index = [];
 let opening = null;
@@ -20,9 +26,11 @@ let settings = loadSettings();
 
 function loadSettings() {
   try {
-    return { openingId: 'sicilian', side: 'white', depth: 8, linesCount: 4, comments: true, dests: true, ...JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}') };
+    // depthLimit (null = до конца линии) пришёл на смену старому полю depth: у существующих пользователей
+    // в localStorage лежит depth: 8, но оно больше не читается — они получают новый дефолт «до конца».
+    return { openingId: 'sicilian', side: 'white', depthLimit: null, linesCount: 4, comments: true, dests: true, ...JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}') };
   } catch {
-    return { openingId: 'sicilian', side: 'white', depth: 8, linesCount: 4, comments: true, dests: true };
+    return { openingId: 'sicilian', side: 'white', depthLimit: null, linesCount: 4, comments: true, dests: true };
   }
 }
 function saveSettings() {
@@ -50,12 +58,12 @@ function readForm() {
   settings = {
     openingId: $('opening-select').value,
     side: document.querySelector('input[name=side]:checked').value,
-    depth: +$('depth').value,
+    depthLimit: sliderToDepth(+$('depth').value),
     linesCount: +$('lines-count').value,
     comments: $('opt-comments').checked,
     dests: $('opt-dests').checked,
   };
-  $('depth-value').textContent = settings.depth;
+  $('depth-value').textContent = depthLabel(settings.depthLimit);
   $('lines-value').textContent = settings.linesCount;
   saveSettings();
 }
@@ -71,11 +79,11 @@ function fillForm() {
   }
   if (index.some((o) => o.id === settings.openingId)) sel.value = settings.openingId;
   document.querySelector(`input[name=side][value=${settings.side}]`).checked = true;
-  $('depth').value = settings.depth;
+  $('depth').value = depthToSlider(settings.depthLimit);
   $('lines-count').value = settings.linesCount;
   $('opt-comments').checked = settings.comments;
   $('opt-dests').checked = settings.dests;
-  $('depth-value').textContent = settings.depth;
+  $('depth-value').textContent = depthLabel(settings.depthLimit);
   $('lines-value').textContent = settings.linesCount;
 }
 
@@ -84,7 +92,6 @@ async function refreshPreview() {
   const entry = index.find((o) => o.id === settings.openingId);
   if (!entry) return;
   opening = await loadOpening(entry);
-  $('depth-field').hidden = !!opening.playToEnd;
   $('lines-count').max = Math.max(1, opening.lines.filter((l) => l.side === 'both' || l.side === settings.side).length);
   if (settings.linesCount > +$('lines-count').max) {
     $('lines-count').value = $('lines-count').max;
@@ -100,7 +107,7 @@ function showScreen(name) {
 
 // ---------- тренировка ----------
 function startTraining() {
-  trainer = createTrainer({ opening, side: settings.side, depth: settings.depth, linesCount: settings.linesCount });
+  trainer = createTrainer({ opening, side: settings.side, depth: settings.depthLimit, linesCount: settings.linesCount });
   failRecorded = false;
   hintsUsed = 0;
   board.setOrientation(settings.side);

@@ -22,16 +22,15 @@ export function selectLines(opening, side, count) {
  * @param {object} opts
  * @param {object} opts.opening   — граф дебюта (data/openings/*.json)
  * @param {'white'|'black'} opts.side — сторона пользователя
- * @param {number} opts.depth     — сколько книжных ходов должен сделать пользователь
+ * @param {number|null} [opts.depth] — необязательный ограничитель числа ходов пользователя;
+ *                                  null (по умолчанию) = играть до последнего книжного хода
  * @param {number} opts.linesCount — сколько линий (top-K по priority) задействовать
  * @param {() => number} [opts.rng] — генератор случайных чисел (для тестов)
  */
-export function createTrainer({ opening, side, depth, linesCount, rng = Math.random }) {
+export function createTrainer({ opening, side, depth = null, linesCount, rng = Math.random }) {
   const lines = selectLines(opening, side, linesCount);
   const mainIds = new Set(lines.filter((l) => !l.always).map((l) => l.id));
   const alwaysIds = new Set(lines.filter((l) => l.always).map((l) => l.id));
-  // playToEnd (ловушки): глубина игнорируется, линия играется до последнего книжного хода.
-  const playToEnd = !!opening.playToEnd;
   if (mainIds.size + alwaysIds.size === 0) throw new Error(`Нет линий за ${side} в дебюте ${opening.id}`);
 
   const state = {
@@ -90,7 +89,7 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
 
   function checkEnd() {
     if (state.status !== 'playing') return;
-    if (!playToEnd && state.userMoves >= depth) {
+    if (depth != null && state.userMoves >= depth) {
       state.status = 'success';
       state.reason = 'depth';
       return;
@@ -160,7 +159,6 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
     },
     side,
     depth,
-    playToEnd,
     lines,
     bookMoves,
     toMove,

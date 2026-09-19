@@ -44,7 +44,7 @@ test('selectLines: top-K по priority плюс служебные линии', 
 });
 
 test('чёрные, K=1: книжный ход принимается, небуквенный — ошибка с ожидаемыми ходами', () => {
-  const t = createTrainer({ opening, side: 'black', depth: 8, linesCount: 1, rng: () => 0 });
+  const t = createTrainer({ opening, side: 'black', linesCount: 1, rng: () => 0 });
   assert.equal(t.isUserTurn(), false);
   const w1 = t.opponentMove();
   assert.equal(w1.san, 'e4');
@@ -61,7 +61,7 @@ test('чёрные, K=1: книжный ход принимается, небу�
 });
 
 test('чёрные: против 2.c3 принимаются ходы служебной линии', () => {
-  const t = createTrainer({ opening, side: 'black', depth: 6, linesCount: 1 });
+  const t = createTrainer({ opening, side: 'black', linesCount: 1 });
   t.opponentMove();
   t.userMove('c7c5', 'c5');
   // вручную переводим в позицию после 2.c3
@@ -71,29 +71,42 @@ test('чёрные: против 2.c3 принимаются ходы служе
   assert.ok(book.some((m) => m.san === 'Nf6'));
 });
 
-test('успех после depth ходов пользователя', () => {
-  const t = createTrainer({ opening, side: 'white', depth: 3, linesCount: 4, rng: () => 0 });
-  const play = () => {
-    while (t.state.status === 'playing') {
-      if (t.isUserTurn()) {
-        const mv = t.bookMoves()[0];
-        t.userMove(mv.uci, mv.san);
-      } else t.opponentMove();
-    }
-  };
-  play();
+const playThrough = (t) => {
+  while (t.state.status === 'playing') {
+    if (t.isUserTurn()) {
+      const mv = t.bookMoves()[0];
+      t.userMove(mv.uci, mv.san);
+    } else t.opponentMove();
+  }
+};
+
+test('по умолчанию линия играется до последнего книжного хода', () => {
+  const t = createTrainer({ opening, side: 'white', linesCount: 4, rng: () => 0 });
+  playThrough(t);
   assert.equal(t.state.status, 'success');
+  assert.equal(t.state.reason, 'book-end');
+  assert.equal(t.bookMoves().length, 0, 'партия закончилась именно из-за исчерпания книжных ходов');
+  // Знаменатель прогресса считается по mainPath, а соперник мог уйти в более короткую ветку графа,
+  // поэтому сверяем не равенство с userMovesTotal(), а то, что линия длиннее прежней глубины по умолчанию (8).
+  assert.ok(t.state.userMoves > 8, `линия обрывается слишком рано: ${t.state.userMoves}`);
+});
+
+test('при явном ограничении успех наступает после depth ходов пользователя', () => {
+  const t = createTrainer({ opening, side: 'white', depth: 3, linesCount: 4, rng: () => 0 });
+  playThrough(t);
+  assert.equal(t.state.status, 'success');
+  assert.equal(t.state.reason, 'depth');
   assert.equal(t.state.userMoves, 3);
 });
 
 test('соперник выбирает ход с весом по партиям', () => {
-  const t = createTrainer({ opening, side: 'black', depth: 8, linesCount: 4, rng: () => 0.999 });
+  const t = createTrainer({ opening, side: 'black', linesCount: 4, rng: () => 0.999 });
   const mv = t.opponentMove();
   assert.ok(mv);
 });
 
 test('после ошибки принимается только правильный ход, и тренировка продолжается', () => {
-  const t = createTrainer({ opening, side: 'black', depth: 3, linesCount: 1, rng: () => 0 });
+  const t = createTrainer({ opening, side: 'black', linesCount: 1, rng: () => 0 });
   t.opponentMove();
   assert.equal(t.userMove('h7h6', 'h6').ok, false);
   assert.equal(t.state.status, 'fail');
@@ -134,11 +147,10 @@ test('ловушки: граф легален, по 10 линий за кажд�
 
 test('ловушки: соперник выбирает ходы по числу линий, каждая ловушка проходится до конца', () => {
   assert.equal(traps.weighting, 'lines');
-  assert.equal(traps.playToEnd, true);
   for (const side of ['white', 'black']) {
     const reached = new Set();
     for (let i = 0; i < 200; i++) {
-      const t = createTrainer({ opening: traps, side, depth: 8, linesCount: 10 });
+      const t = createTrainer({ opening: traps, side, linesCount: 10 });
       while (t.state.status === 'playing') {
         if (t.isUserTurn()) {
           const moves = t.bookMoves();
@@ -154,13 +166,12 @@ test('ловушки: соперник выбирает ходы по числу
   }
 });
 
-test('ловушки: при глубине 8 каждая из 20 ловушек доигрывается до последнего хода линии', () => {
+test('ловушки: каждая из 20 ловушек доигрывается до последнего хода линии', () => {
   assert.equal(traps.lines.length, 20);
   for (const line of traps.lines) {
     let r = 0;
     const opening = { ...traps, lines: [line] };
-    const t = createTrainer({ opening, side: line.side, depth: 8, linesCount: 1, rng: () => r });
-    assert.equal(t.playToEnd, true);
+    const t = createTrainer({ opening, side: line.side, linesCount: 1, rng: () => r });
     for (const san of line.mainPath) {
       assert.equal(t.state.status, 'playing', `${line.id}: партия закончилась до ${san}`);
       const moves = t.bookMoves();
