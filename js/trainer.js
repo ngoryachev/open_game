@@ -22,16 +22,15 @@ export function selectLines(opening, side, count) {
  * @param {object} opts
  * @param {object} opts.opening   — граф дебюта (data/openings/*.json)
  * @param {'white'|'black'} opts.side — сторона пользователя
- * @param {number} opts.depth     — сколько книжных ходов должен сделать пользователь
+ * @param {number|null} [opts.depth] — необязательный ограничитель числа ходов пользователя;
+ *                                  null (по умолчанию) = играть до последнего книжного хода
  * @param {number} opts.linesCount — сколько линий (top-K по priority) задействовать
  * @param {() => number} [opts.rng] — генератор случайных чисел (для тестов)
  */
-export function createTrainer({ opening, side, depth, linesCount, rng = Math.random }) {
+export function createTrainer({ opening, side, depth = null, linesCount, rng = Math.random }) {
   const lines = selectLines(opening, side, linesCount);
   const mainIds = new Set(lines.filter((l) => !l.always).map((l) => l.id));
   const alwaysIds = new Set(lines.filter((l) => l.always).map((l) => l.id));
-  // playToEnd (ловушки): глубина игнорируется, линия играется до последнего книжного хода.
-  const playToEnd = !!opening.playToEnd;
   if (mainIds.size + alwaysIds.size === 0) throw new Error(`Нет линий за ${side} в дебюте ${opening.id}`);
 
   const state = {
@@ -74,11 +73,30 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
     return lines.filter((l) => ids.has(l.id));
   }
 
-  /** Число ходов пользователя в самой длинной из ещё возможных линий (по mainPath). */
+  // key → максимум оставшихся ходов пользователя из этой позиции; null = узел в текущем стеке обхода.
+  // Кэш живёт всю попытку: bookMoves() зависит только от позиции и выбранных линий, а они не меняются.
+  const remainingMemo = new Map();
+
+  /** Максимум ходов пользователя, которые ещё можно сделать из позиции key, — по графу книги. */
+  function remainingUserMoves(key) {
+    if (remainingMemo.has(key)) return remainingMemo.get(key) ?? 0; // повтор позиции (цикл) — ветку не удлиняет
+    remainingMemo.set(key, null);
+    const add = sideToMove(key) === side ? 1 : 0;
+    let best = 0;
+    for (const m of bookMoves(key)) best = Math.max(best, add + remainingUserMoves(m.to));
+    remainingMemo.set(key, best);
+    return best;
+  }
+
+  /**
+   * Число ходов пользователя в самой длинной из ещё возможных линий: сделанные плюс оставшиеся по графу.
+   * Считается по графу, а не по mainPath линий, поэтому значение корректно и когда партия ушла в ветку
+   * вне mainPath: оно никогда не меньше state.userMoves и равно ему в конце книги (прогресс-бар доходит
+   * ровно до 100 %). Раньше знаменатель брался из mainPath ещё совместимых линий и мог оказаться меньше
+   * числа сделанных ходов или обнулиться, когда совместимых линий не осталось.
+   */
   function userMovesTotal() {
-    const parity = side === 'white' ? 0 : 1;
-    const count = (l) => (l.mainPath || []).filter((_, i) => i % 2 === parity).length;
-    return Math.max(0, ...currentLines().map(count));
+    return state.userMoves + remainingUserMoves(state.key);
   }
 
   function apply(move, by) {
@@ -90,7 +108,7 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
 
   function checkEnd() {
     if (state.status !== 'playing') return;
-    if (!playToEnd && state.userMoves >= depth) {
+    if (depth != null && state.userMoves >= depth) {
       state.status = 'success';
       state.reason = 'depth';
       return;
@@ -160,7 +178,6 @@ export function createTrainer({ opening, side, depth, linesCount, rng = Math.ran
     },
     side,
     depth,
-    playToEnd,
     lines,
     bookMoves,
     toMove,
