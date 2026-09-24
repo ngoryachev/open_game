@@ -1,3 +1,4 @@
 [
-  { "id": "sicilian", "name": "Сицилианская защита", "eco": "B20–B99", "sides": ["white", "black"], "file": "sicilian.json" }
+  { "id": "sicilian", "name": "Сицилианская защита", "eco": "B20–B99", "sides": ["white", "black"], "file": "sicilian.json" },
+  { "id": "traps", "name": "Дебютные ловушки", "eco": "топ-10 за каждую сторону", "sides": ["white", "black"], "file": "traps.json" }
 ]

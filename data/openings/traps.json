@@ -1,0 +1,4133 @@
+{
+ "id": "traps",
+ "name": "Дебютные ловушки",
+ "eco": "топ-10 за каждую сторону",
+ "description": "Не один дебют, а набор классических дебютных ловушек: по 10 за белых и за чёрных. Вы играете за сторону, которая ставит ловушку, соперник в неё попадается. Каждая ловушка — отдельная линия; порядок — от самых известных.",
+ "generated": "2026-09-19",
+ "statsSource": "lichess-masters",
+ "weighting": "lines",
+ "start": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -",
+ "lines": [
+  {
+   "id": "scholar",
+   "name": "Детский мат",
+   "eco": "C20",
+   "side": "white",
+   "priority": 1,
+   "always": false,
+   "description": "2.Qh5 и 3.Bc4 — атака на f7. Против 3…Nf6?? — мат 4.Qxf7#.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Qh5",
+    "Nc6",
+    "Bc4",
+    "Nf6",
+    "Qxf7#"
+   ]
+  },
+  {
+   "id": "legal",
+   "name": "Мат Легаля",
+   "eco": "C41",
+   "side": "white",
+   "priority": 2,
+   "always": false,
+   "description": "Жертва ферзя за мат лёгкими фигурами: 6.Nxe5! Bxd1?? 7.Bxf7+ Ke7 8.Nd5#.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "d6",
+    "Bc4",
+    "Nc6",
+    "Nc3",
+    "Bg4",
+    "h3",
+    "Bh5",
+    "Nxe5",
+    "Bxd1",
+    "Bxf7+",
+    "Ke7",
+    "Nd5#"
+   ]
+  },
+  {
+   "id": "petrov",
+   "name": "Ловушка в защите Петрова",
+   "eco": "C42",
+   "side": "white",
+   "priority": 3,
+   "always": false,
+   "description": "Симметрия после 3…Nxe4? 4.Qe2 Nf6?? наказывается вскрытым шахом 5.Nc6+ с выигрышем ферзя.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "Nf6",
+    "Nxe5",
+    "Nxe4",
+    "Qe2",
+    "Nf6",
+    "Nc6+",
+    "Qe7",
+    "Nxe7"
+   ]
+  },
+  {
+   "id": "caro_smother",
+   "name": "Спёртый мат в защите Каро-Канн",
+   "eco": "B15",
+   "side": "white",
+   "priority": 4,
+   "always": false,
+   "description": "5.Qe2 Ngf6?? 6.Nd6# — пешка e7 связана по вертикали e.",
+   "mainPath": [
+    "e4",
+    "c6",
+    "d4",
+    "d5",
+    "Nc3",
+    "dxe4",
+    "Nxe4",
+    "Nd7",
+    "Qe2",
+    "Ngf6",
+    "Nd6#"
+   ]
+  },
+  {
+   "id": "damiano",
+   "name": "Защита Дамиано",
+   "eco": "C40",
+   "side": "white",
+   "priority": 5,
+   "always": false,
+   "description": "2…f6? 3.Nxe5! fxe5? 4.Qh5+ — белые выигрывают ладью или матуют.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "f6",
+    "Nxe5",
+    "fxe5",
+    "Qh5+",
+    "g6",
+    "Qxe5+",
+    "Qe7",
+    "Qxh8"
+   ]
+  },
+  {
+   "id": "qga",
+   "name": "Ловушка в принятом ферзевом гамбите",
+   "eco": "D20",
+   "side": "white",
+   "priority": 6,
+   "always": false,
+   "description": "Попытка удержать пешку c4 через …b5 и …c6 проваливается: 6.Qf3 — двойной удар по a8.",
+   "mainPath": [
+    "d4",
+    "d5",
+    "c4",
+    "dxc4",
+    "e3",
+    "b5",
+    "a4",
+    "c6",
+    "axb5",
+    "cxb5",
+    "Qf3"
+   ]
+  },
+  {
+   "id": "hanham",
+   "name": "Ловушка в защите Филидора",
+   "eco": "C41",
+   "side": "white",
+   "priority": 7,
+   "always": false,
+   "description": "Вариант Ханхэма: после 4…Be7 5.dxe5 чёрные теряют f7 или пешку e5.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "d6",
+    "d4",
+    "Nd7",
+    "Bc4",
+    "Be7",
+    "dxe5",
+    "dxe5",
+    "Qd5"
+   ]
+  },
+  {
+   "id": "dutch",
+   "name": "Ловушка в голландской защите",
+   "eco": "A80",
+   "side": "white",
+   "priority": 8,
+   "always": false,
+   "description": "2.Bg5 и наступление чёрных пешек …h6, …g5, …f4 ослабляют диагональ h5–e8: 7.Qxh5+! Rxh5 8.Bg6#.",
+   "mainPath": [
+    "d4",
+    "f5",
+    "Bg5",
+    "h6",
+    "Bh4",
+    "g5",
+    "Bg3",
+    "f4",
+    "e3",
+    "h5",
+    "Bd3",
+    "Rh6",
+    "Qxh5+",
+    "Rxh5",
+    "Bg6#"
+   ]
+  },
+  {
+   "id": "monticelli",
+   "name": "Ловушка Монтичелли",
+   "eco": "E16",
+   "side": "white",
+   "priority": 9,
+   "always": false,
+   "description": "Новоиндийская/защита Боголюбова: 8…Ne4? 9.Qc2 Nxc3? 10.Ng5! — двойная угроза мата на h7 и слону b7.",
+   "mainPath": [
+    "d4",
+    "Nf6",
+    "c4",
+    "e6",
+    "Nf3",
+    "b6",
+    "g3",
+    "Bb7",
+    "Bg2",
+    "Bb4+",
+    "Bd2",
+    "Bxd2+",
+    "Qxd2",
+    "O-O",
+    "Nc3",
+    "Ne4",
+    "Qc2",
+    "Nxc3",
+    "Ng5",
+    "Bxg2",
+    "Qxh7#"
+   ]
+  },
+  {
+   "id": "tarrasch",
+   "name": "Ловушка Тарраша",
+   "eco": "C80",
+   "side": "white",
+   "priority": 10,
+   "always": false,
+   "description": "Открытый вариант испанской: 11…Qd7? 12.Nxe6 fxe6 13.Rxe4! — пешка d5 связана, белые выигрывают фигуру.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "Nc6",
+    "Bb5",
+    "a6",
+    "Ba4",
+    "Nf6",
+    "O-O",
+    "Nxe4",
+    "d4",
+    "b5",
+    "Bb3",
+    "d5",
+    "dxe5",
+    "Be6",
+    "c3",
+    "Be7",
+    "Re1",
+    "O-O",
+    "Nd4",
+    "Qd7",
+    "Nxe6",
+    "fxe6",
+    "Rxe4",
+    "dxe4",
+    "Qxd7"
+   ]
+  },
+  {
+   "id": "blackburne",
+   "name": "Ловушка Блэкберна (Шиллинг-гамбит)",
+   "eco": "C50",
+   "side": "black",
+   "priority": 1,
+   "always": false,
+   "description": "3…Nd4!? — на жадное 4.Nxe5? следует 4…Qg5! и спёртый мат 7…Nf3#.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "Nc6",
+    "Bc4",
+    "Nd4",
+    "Nxe5",
+    "Qg5",
+    "Nxf7",
+    "Qxg2",
+    "Rf1",
+    "Qxe4+",
+    "Be2",
+    "Nf3#"
+   ]
+  },
+  {
+   "id": "englund",
+   "name": "Гамбит Энглунда",
+   "eco": "A40",
+   "side": "black",
+   "priority": 2,
+   "always": false,
+   "description": "1.d4 e5 — после 4.Bf4? Qb4+ и Qxb2 чёрные матуют 8…Qc1#.",
+   "mainPath": [
+    "d4",
+    "e5",
+    "dxe5",
+    "Nc6",
+    "Nf3",
+    "Qe7",
+    "Bf4",
+    "Qb4+",
+    "Bd2",
+    "Qxb2",
+    "Bc3",
+    "Bb4",
+    "Qd2",
+    "Bxc3",
+    "Qxc3",
+    "Qc1#"
+   ]
+  },
+  {
+   "id": "stafford",
+   "name": "Гамбит Стаффорда",
+   "eco": "C42",
+   "side": "black",
+   "priority": 3,
+   "always": false,
+   "description": "Жертва пешки в защите Петрова: 5.d3? Bc5 6.Bg5?? Nxe4! 7.Bxd8 Bxf2+ 8.Ke2 Bg4#.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "Nf6",
+    "Nxe5",
+    "Nc6",
+    "Nxc6",
+    "dxc6",
+    "d3",
+    "Bc5",
+    "Bg5",
+    "Nxe4",
+    "Bxd8",
+    "Bxf2+",
+    "Ke2",
+    "Bg4#"
+   ]
+  },
+  {
+   "id": "elephant",
+   "name": "Слоновая ловушка",
+   "eco": "D51",
+   "side": "black",
+   "priority": 4,
+   "always": false,
+   "description": "Ферзевый гамбит: 6.Nxd5?? Nxd5! 7.Bxd8 Bb4+ — чёрные отыгрывают ферзя и остаются с лишней фигурой.",
+   "mainPath": [
+    "d4",
+    "d5",
+    "c4",
+    "e6",
+    "Nc3",
+    "Nf6",
+    "Bg5",
+    "Nbd7",
+    "cxd5",
+    "exd5",
+    "Nxd5",
+    "Nxd5",
+    "Bxd8",
+    "Bb4+",
+    "Qd2",
+    "Bxd2+",
+    "Kxd2",
+    "Kxd8"
+   ]
+  },
+  {
+   "id": "lasker",
+   "name": "Ловушка Ласкера (контргамбит Альбина)",
+   "eco": "D08",
+   "side": "black",
+   "priority": 5,
+   "always": false,
+   "description": "6.Bxb4?? exf2+ 7.Ke2 fxg1=N+! — превращение в коня с шахом.",
+   "mainPath": [
+    "d4",
+    "d5",
+    "c4",
+    "e5",
+    "dxe5",
+    "d4",
+    "e3",
+    "Bb4+",
+    "Bd2",
+    "dxe3",
+    "Bxb4",
+    "exf2+",
+    "Ke2",
+    "fxg1=N+",
+    "Ke1",
+    "Qh4+"
+   ]
+  },
+  {
+   "id": "siberian",
+   "name": "Сибирская ловушка",
+   "eco": "B21",
+   "side": "black",
+   "priority": 6,
+   "always": false,
+   "description": "Гамбит Морра: 9.h3?? Nd4! — ферзь e2 атакован, а на 10.Nxd4 следует 10…Qh2#.",
+   "mainPath": [
+    "e4",
+    "c5",
+    "d4",
+    "cxd4",
+    "c3",
+    "dxc3",
+    "Nxc3",
+    "Nc6",
+    "Nf3",
+    "e6",
+    "Bc4",
+    "Qc7",
+    "O-O",
+    "Nf6",
+    "Qe2",
+    "Ng4",
+    "h3",
+    "Nd4",
+    "Nxd4",
+    "Qh2#"
+   ]
+  },
+  {
+   "id": "noahs_ark",
+   "name": "Ловушка «Ноев ковчег»",
+   "eco": "C71",
+   "side": "black",
+   "priority": 7,
+   "always": false,
+   "description": "Испанская партия: пешки a6, b5, c4 запирают слона b3.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "Nc6",
+    "Bb5",
+    "a6",
+    "Ba4",
+    "d6",
+    "d4",
+    "b5",
+    "Bb3",
+    "Nxd4",
+    "Nxd4",
+    "exd4",
+    "Qxd4",
+    "c5",
+    "Qd5",
+    "Be6",
+    "Qc6+",
+    "Bd7",
+    "Qd5",
+    "c4"
+   ]
+  },
+  {
+   "id": "kieninger",
+   "name": "Ловушка Кенингера (будапештский гамбит)",
+   "eco": "A52",
+   "side": "black",
+   "priority": 8,
+   "always": false,
+   "description": "8.axb4?? Nd3# — пешка e2 связана ферзём e7.",
+   "mainPath": [
+    "d4",
+    "Nf6",
+    "c4",
+    "e5",
+    "dxe5",
+    "Ng4",
+    "Bf4",
+    "Nc6",
+    "Nf3",
+    "Bb4+",
+    "Nbd2",
+    "Qe7",
+    "a3",
+    "Ngxe5",
+    "axb4",
+    "Nd3#"
+   ]
+  },
+  {
+   "id": "fishing_pole",
+   "name": "Ловушка «Удочка»",
+   "eco": "C65",
+   "side": "black",
+   "priority": 9,
+   "always": false,
+   "description": "Испанская партия: конь на g4 — приманка. После 6.hxg4? hxg4 открывается h-вертикаль для атаки на короля.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "Nc6",
+    "Bb5",
+    "Nf6",
+    "O-O",
+    "Ng4",
+    "h3",
+    "h5",
+    "hxg4",
+    "hxg4",
+    "Ne1",
+    "Qh4",
+    "f3",
+    "g3"
+   ]
+  },
+  {
+   "id": "mortimer",
+   "name": "Ловушка Мортимера",
+   "eco": "C65",
+   "side": "black",
+   "priority": 10,
+   "always": false,
+   "description": "Берлинская защита: 4…Ne7 провоцирует 5.Nxe5? c6 6.Ba4? Qa5+ — вилка королю и коню.",
+   "mainPath": [
+    "e4",
+    "e5",
+    "Nf3",
+    "Nc6",
+    "Bb5",
+    "Nf6",
+    "d3",
+    "Ne7",
+    "Nxe5",
+    "c6",
+    "Ba4",
+    "Qa5+",
+    "Nc3",
+    "Qxe5"
+   ]
+  }
+ ],
+ "nodes": {
+  "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "e4",
+     "uci": "e2e4",
+     "to": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq -",
+     "comment": "Занимает центр и открывает ферзя со слоном.",
+     "lines": [
+      "scholar",
+      "legal",
+      "petrov",
+      "caro_smother",
+      "damiano",
+      "hanham",
+      "tarrasch",
+      "blackburne",
+      "stafford",
+      "siberian",
+      "noahs_ark",
+      "fishing_pole",
+      "mortimer"
+     ],
+     "stats": {
+      "games": 1309466,
+      "share": 0.455,
+      "white": 0.32,
+      "draws": 0.438,
+      "black": 0.242
+     }
+    },
+    {
+     "san": "d4",
+     "uci": "d2d4",
+     "to": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "qga",
+      "dutch",
+      "monticelli",
+      "englund",
+      "elephant",
+      "lasker",
+      "kieninger"
+     ],
+     "stats": {
+      "games": 1029878,
+      "share": 0.358,
+      "white": 0.325,
+      "draws": 0.448,
+      "black": 0.227
+     }
+    }
+   ]
+  },
+  "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "c5",
+     "uci": "c7c5",
+     "to": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 601092,
+      "share": 0.459,
+      "white": 0.314,
+      "draws": 0.429,
+      "black": 0.257
+     }
+    },
+    {
+     "san": "e5",
+     "uci": "e7e5",
+     "to": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "scholar",
+      "legal",
+      "petrov",
+      "damiano",
+      "hanham",
+      "tarrasch",
+      "blackburne",
+      "stafford",
+      "noahs_ark",
+      "fishing_pole",
+      "mortimer"
+     ],
+     "stats": {
+      "games": 314452,
+      "share": 0.24,
+      "white": 0.292,
+      "draws": 0.507,
+      "black": 0.201
+     }
+    },
+    {
+     "san": "c6",
+     "uci": "c7c6",
+     "to": "rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -",
+     "comment": "Защита Каро-Канн.",
+     "lines": [
+      "caro_smother"
+     ],
+     "stats": {
+      "games": 106295,
+      "share": 0.081,
+      "white": 0.324,
+      "draws": 0.432,
+      "black": 0.244
+     }
+    }
+   ]
+  },
+  "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Qh5",
+     "uci": "d1h5",
+     "to": "rnbqkbnr/pppp1ppp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq -",
+     "comment": "Ранний выпад ферзём: нападение на e5 и f7.",
+     "lines": [
+      "scholar"
+     ]
+    },
+    {
+     "san": "Nf3",
+     "uci": "g1f3",
+     "to": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -",
+     "comment": "Нападение на e5.",
+     "lines": [
+      "legal",
+      "petrov",
+      "damiano",
+      "hanham",
+      "tarrasch",
+      "blackburne",
+      "stafford",
+      "noahs_ark",
+      "fishing_pole",
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp1ppp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nc6",
+     "uci": "b8c6",
+     "to": "r1bqkbnr/pppp1ppp/2n5/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR w KQkq -",
+     "comment": "Защищает e5.",
+     "lines": [
+      "scholar"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/2n5/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bc4",
+     "uci": "f1c4",
+     "to": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq -",
+     "comment": "Второй удар по f7 — угроза Qxf7#.",
+     "lines": [
+      "scholar"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nf6",
+     "uci": "g8f6",
+     "to": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq -",
+     "comment": "Грубая ошибка: конь нападает на ферзя, но f7 остаётся без защиты. Правильно 3…g6 или 3…Qe7.",
+     "lines": [
+      "scholar"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq -": {
+   "moves": [
+    {
+     "san": "Qxf7#",
+     "uci": "h5f7",
+     "to": "r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq -",
+     "comment": "Мат: f7 защищён слоном c4, королю некуда отступить.",
+     "lines": [
+      "scholar"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "d6",
+     "uci": "d7d6",
+     "to": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -",
+     "comment": "Защита Филидора.",
+     "lines": [
+      "legal",
+      "hanham"
+     ]
+    },
+    {
+     "san": "Nf6",
+     "uci": "g8f6",
+     "to": "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -",
+     "comment": "Русская партия (защита Петрова).",
+     "lines": [
+      "petrov",
+      "stafford"
+     ]
+    },
+    {
+     "san": "f6",
+     "uci": "f7f6",
+     "to": "rnbqkbnr/pppp2pp/5p2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -",
+     "comment": "Защита Дамиано — слабый ход, ослабляющий диагональ h5–e8.",
+     "lines": [
+      "damiano"
+     ]
+    },
+    {
+     "san": "Nc6",
+     "uci": "b8c6",
+     "to": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "tarrasch",
+      "blackburne",
+      "noahs_ark",
+      "fishing_pole",
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bc4",
+     "uci": "f1c4",
+     "to": "rnbqkbnr/ppp2ppp/3p4/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+     "comment": "Слон нацелен на f7.",
+     "lines": [
+      "legal"
+     ]
+    },
+    {
+     "san": "d4",
+     "uci": "d2d4",
+     "to": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq -",
+     "comment": "Вскрытие центра.",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/3p4/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nc6",
+     "uci": "b8c6",
+     "to": "r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nc3",
+     "uci": "b1c3",
+     "to": "r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq -",
+     "comment": "Развитие; конь пойдёт на d5.",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bg4",
+     "uci": "c8g4",
+     "to": "r2qkbnr/ppp2ppp/2np4/4p3/2B1P1b1/2N2N2/PPPP1PPP/R1BQK2R w KQkq -",
+     "comment": "Связка коня f3 с ферзём.",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/ppp2ppp/2np4/4p3/2B1P1b1/2N2N2/PPPP1PPP/R1BQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "h3",
+     "uci": "h2h3",
+     "to": "r2qkbnr/ppp2ppp/2np4/4p3/2B1P1b1/2N2N1P/PPPP1PP1/R1BQK2R b KQkq -",
+     "comment": "Ставит вопрос слону.",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/ppp2ppp/2np4/4p3/2B1P1b1/2N2N1P/PPPP1PP1/R1BQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bh5",
+     "uci": "g4h5",
+     "to": "r2qkbnr/ppp2ppp/2np4/4p2b/2B1P3/2N2N1P/PPPP1PP1/R1BQK2R w KQkq -",
+     "comment": "Сохраняет связку — но она мнимая.",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/ppp2ppp/2np4/4p2b/2B1P3/2N2N1P/PPPP1PP1/R1BQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe5",
+     "uci": "f3e5",
+     "to": "r2qkbnr/ppp2ppp/2np4/4N2b/2B1P3/2N4P/PPPP1PP1/R1BQK2R b KQkq -",
+     "comment": "Жертва ферзя! Связка ложная: если чёрные возьмут ферзя, их ждёт мат.",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/ppp2ppp/2np4/4N2b/2B1P3/2N4P/PPPP1PP1/R1BQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bxd1",
+     "uci": "h5d1",
+     "to": "r2qkbnr/ppp2ppp/2np4/4N3/2B1P3/2N4P/PPPP1PP1/R1BbK2R w KQkq -",
+     "comment": "Ошибка. Нужно было 6…Nxe5 или 6…dxe5 с потерей лишь пешки.",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/ppp2ppp/2np4/4N3/2B1P3/2N4P/PPPP1PP1/R1BbK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bxf7+",
+     "uci": "c4f7",
+     "to": "r2qkbnr/ppp2Bpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R b KQkq -",
+     "comment": "Шах, король вынужден выйти на e7.",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/ppp2Bpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Ke7",
+     "uci": "e8e7",
+     "to": "r2q1bnr/ppp1kBpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R w KQ -",
+     "comment": "",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "r2q1bnr/ppp1kBpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R w KQ -": {
+   "moves": [
+    {
+     "san": "Nd5#",
+     "uci": "c3d5",
+     "to": "r2q1bnr/ppp1kBpp/2np4/3NN3/4P3/7P/PPPP1PP1/R1BbK2R b KQ -",
+     "comment": "Мат Легаля: три лёгкие фигуры контролируют все поля вокруг короля.",
+     "lines": [
+      "legal"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe5",
+     "uci": "f3e5",
+     "to": "rnbqkb1r/pppp1ppp/5n2/4N3/4P3/8/PPPP1PPP/RNBQKB1R b KQkq -",
+     "comment": "Главное продолжение.",
+     "lines": [
+      "petrov",
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/5n2/4N3/4P3/8/PPPP1PPP/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe4",
+     "uci": "f6e4",
+     "to": "rnbqkb1r/pppp1ppp/8/4N3/4n3/8/PPPP1PPP/RNBQKB1R w KQkq -",
+     "comment": "Неточность: симметричное взятие. Правильно 3…d6.",
+     "lines": [
+      "petrov"
+     ]
+    },
+    {
+     "san": "Nc6",
+     "uci": "b8c6",
+     "to": "r1bqkb1r/pppp1ppp/2n2n2/4N3/4P3/8/PPPP1PPP/RNBQKB1R w KQkq -",
+     "comment": "Гамбит Стаффорда: жертва пешки ради развития.",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/8/4N3/4n3/8/PPPP1PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qe2",
+     "uci": "d1e2",
+     "to": "rnbqkb1r/pppp1ppp/8/4N3/4n3/8/PPPPQPPP/RNB1KB1R b KQkq -",
+     "comment": "Связка по вертикали e: конь e4 атакован.",
+     "lines": [
+      "petrov"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/8/4N3/4n3/8/PPPPQPPP/RNB1KB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nf6",
+     "uci": "e4f6",
+     "to": "rnbqkb1r/pppp1ppp/5n2/4N3/8/8/PPPPQPPP/RNB1KB1R w KQkq -",
+     "comment": "Грубая ошибка — открывает вертикаль. Нужно 4…Qe7.",
+     "lines": [
+      "petrov"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/5n2/4N3/8/8/PPPPQPPP/RNB1KB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nc6+",
+     "uci": "e5c6",
+     "to": "rnbqkb1r/pppp1ppp/2N2n2/8/8/8/PPPPQPPP/RNB1KB1R b KQkq -",
+     "comment": "Вскрытый шах от ферзя e2 и одновременно нападение на ферзя d8.",
+     "lines": [
+      "petrov"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/2N2n2/8/8/8/PPPPQPPP/RNB1KB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qe7",
+     "uci": "d8e7",
+     "to": "rnb1kb1r/ppppqppp/2N2n2/8/8/8/PPPPQPPP/RNB1KB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "petrov"
+     ]
+    }
+   ]
+  },
+  "rnb1kb1r/ppppqppp/2N2n2/8/8/8/PPPPQPPP/RNB1KB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe7",
+     "uci": "c6e7",
+     "to": "rnb1kb1r/ppppNppp/5n2/8/8/8/PPPPQPPP/RNB1KB1R b KQkq -",
+     "comment": "Белые выиграли ферзя за коня.",
+     "lines": [
+      "petrov"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "d4",
+     "uci": "d2d4",
+     "to": "rnbqkbnr/pp1ppppp/2p5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pp1ppppp/2p5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "d5",
+     "uci": "d7d5",
+     "to": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nc3",
+     "uci": "b1c3",
+     "to": "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "dxe4",
+     "uci": "d5e4",
+     "to": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N5/PPP2PPP/R1BQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pp2pppp/2p5/8/3Pp3/2N5/PPP2PPP/R1BQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe4",
+     "uci": "c3e4",
+     "to": "rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq -",
+     "comment": "Главная линия.",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nd7",
+     "uci": "b8d7",
+     "to": "r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR w KQkq -",
+     "comment": "Вариант Карпова.",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Qe2",
+     "uci": "d1e2",
+     "to": "r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP1QPPP/R1B1KBNR b KQkq -",
+     "comment": "Ферзь встаёт на вертикаль e — ловушка!",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pp1npppp/2p5/8/3PN3/8/PPP1QPPP/R1B1KBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Ngf6",
+     "uci": "g8f6",
+     "to": "r1bqkb1r/pp1npppp/2p2n2/8/3PN3/8/PPP1QPPP/R1B1KBNR w KQkq -",
+     "comment": "Естественный, но проигрывающий ход.",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pp1npppp/2p2n2/8/3PN3/8/PPP1QPPP/R1B1KBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nd6#",
+     "uci": "e4d6",
+     "to": "r1bqkb1r/pp1npppp/2pN1n2/8/3P4/8/PPP1QPPP/R1B1KBNR b KQkq -",
+     "comment": "Спёртый мат: пешка e7 связана ферзём e2 и не может взять коня.",
+     "lines": [
+      "caro_smother"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp2pp/5p2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe5",
+     "uci": "f3e5",
+     "to": "rnbqkbnr/pppp2pp/5p2/4N3/4P3/8/PPPP1PPP/RNBQKB1R b KQkq -",
+     "comment": "Жертва коня: пешку f6 брать нельзя.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp2pp/5p2/4N3/4P3/8/PPPP1PPP/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "fxe5",
+     "uci": "f6e5",
+     "to": "rnbqkbnr/pppp2pp/8/4p3/4P3/8/PPPP1PPP/RNBQKB1R w KQkq -",
+     "comment": "Ошибка. Лучше 3…Qe7.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp2pp/8/4p3/4P3/8/PPPP1PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qh5+",
+     "uci": "d1h5",
+     "to": "rnbqkbnr/pppp2pp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KB1R b KQkq -",
+     "comment": "Шах по ослабленной диагонали.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp2pp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "g6",
+     "uci": "g7g6",
+     "to": "rnbqkbnr/pppp3p/6p1/4p2Q/4P3/8/PPPP1PPP/RNB1KB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "damiano"
+     ]
+    },
+    {
+     "san": "Ke7",
+     "uci": "e8e7",
+     "to": "rnbq1bnr/ppppk1pp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KB1R w KQ -",
+     "comment": "Король выходит в центр.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp3p/6p1/4p2Q/4P3/8/PPPP1PPP/RNB1KB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qxe5+",
+     "uci": "h5e5",
+     "to": "rnbqkbnr/pppp3p/6p1/4Q3/4P3/8/PPPP1PPP/RNB1KB1R b KQkq -",
+     "comment": "Шах и одновременно нападение на ладью h8.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp3p/6p1/4Q3/4P3/8/PPPP1PPP/RNB1KB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qe7",
+     "uci": "d8e7",
+     "to": "rnb1kbnr/ppppq2p/6p1/4Q3/4P3/8/PPPP1PPP/RNB1KB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnb1kbnr/ppppq2p/6p1/4Q3/4P3/8/PPPP1PPP/RNB1KB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qxh8",
+     "uci": "e5h8",
+     "to": "rnb1kbnQ/ppppq2p/6p1/8/4P3/8/PPPP1PPP/RNB1KB1R b KQq -",
+     "comment": "Белые выиграли ладью и пешки за коня.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbq1bnr/ppppk1pp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KB1R w KQ -": {
+   "moves": [
+    {
+     "san": "Qxe5+",
+     "uci": "h5e5",
+     "to": "rnbq1bnr/ppppk1pp/8/4Q3/4P3/8/PPPP1PPP/RNB1KB1R b KQ -",
+     "comment": "",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbq1bnr/ppppk1pp/8/4Q3/4P3/8/PPPP1PPP/RNB1KB1R b KQ -": {
+   "moves": [
+    {
+     "san": "Kf7",
+     "uci": "e7f7",
+     "to": "rnbq1bnr/pppp1kpp/8/4Q3/4P3/8/PPPP1PPP/RNB1KB1R w KQ -",
+     "comment": "",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbq1bnr/pppp1kpp/8/4Q3/4P3/8/PPPP1PPP/RNB1KB1R w KQ -": {
+   "moves": [
+    {
+     "san": "Bc4+",
+     "uci": "f1c4",
+     "to": "rnbq1bnr/pppp1kpp/8/4Q3/2B1P3/8/PPPP1PPP/RNB1K2R b KQ -",
+     "comment": "Подключение слона с шахом.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbq1bnr/pppp1kpp/8/4Q3/2B1P3/8/PPPP1PPP/RNB1K2R b KQ -": {
+   "moves": [
+    {
+     "san": "d5",
+     "uci": "d7d5",
+     "to": "rnbq1bnr/ppp2kpp/8/3pQ3/2B1P3/8/PPPP1PPP/RNB1K2R w KQ -",
+     "comment": "",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbq1bnr/ppp2kpp/8/3pQ3/2B1P3/8/PPPP1PPP/RNB1K2R w KQ -": {
+   "moves": [
+    {
+     "san": "Bxd5+",
+     "uci": "c4d5",
+     "to": "rnbq1bnr/ppp2kpp/8/3BQ3/4P3/8/PPPP1PPP/RNB1K2R b KQ -",
+     "comment": "Вскрывает позицию короля.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbq1bnr/ppp2kpp/8/3BQ3/4P3/8/PPPP1PPP/RNB1K2R b KQ -": {
+   "moves": [
+    {
+     "san": "Kg6",
+     "uci": "f7g6",
+     "to": "rnbq1bnr/ppp3pp/6k1/3BQ3/4P3/8/PPPP1PPP/RNB1K2R w KQ -",
+     "comment": "",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbq1bnr/ppp3pp/6k1/3BQ3/4P3/8/PPPP1PPP/RNB1K2R w KQ -": {
+   "moves": [
+    {
+     "san": "h4",
+     "uci": "h2h4",
+     "to": "rnbq1bnr/ppp3pp/6k1/3BQ3/4P2P/8/PPPP1PP1/RNB1K2R b KQ -",
+     "comment": "Угроза h4-h5+; у чёрных нет защиты от разгромной атаки.",
+     "lines": [
+      "damiano"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "d5",
+     "uci": "d7d5",
+     "to": "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "qga",
+      "elephant",
+      "lasker"
+     ]
+    },
+    {
+     "san": "f5",
+     "uci": "f7f5",
+     "to": "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -",
+     "comment": "Голландская защита.",
+     "lines": [
+      "dutch"
+     ]
+    },
+    {
+     "san": "Nf6",
+     "uci": "g8f6",
+     "to": "rnbqkb1r/pppppppp/5n2/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli",
+      "kieninger"
+     ]
+    },
+    {
+     "san": "e5",
+     "uci": "e7e5",
+     "to": "rnbqkbnr/pppp1ppp/8/4p3/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -",
+     "comment": "Гамбит Энглунда.",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "c4",
+     "uci": "c2c4",
+     "to": "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq -",
+     "comment": "Ферзевый гамбит.",
+     "lines": [
+      "qga",
+      "elephant",
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "dxc4",
+     "uci": "d5c4",
+     "to": "rnbqkbnr/ppp1pppp/8/8/2pP4/8/PP2PPPP/RNBQKBNR w KQkq -",
+     "comment": "Принимает гамбит.",
+     "lines": [
+      "qga"
+     ]
+    },
+    {
+     "san": "e6",
+     "uci": "e7e6",
+     "to": "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    },
+    {
+     "san": "e5",
+     "uci": "e7e5",
+     "to": "rnbqkbnr/ppp2ppp/8/3pp3/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -",
+     "comment": "Контргамбит Альбина.",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp1pppp/8/8/2pP4/8/PP2PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "e3",
+     "uci": "e2e3",
+     "to": "rnbqkbnr/ppp1pppp/8/8/2pP4/4P3/PP3PPP/RNBQKBNR b KQkq -",
+     "comment": "Готовит Bxc4.",
+     "lines": [
+      "qga"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp1pppp/8/8/2pP4/4P3/PP3PPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "b5",
+     "uci": "b7b5",
+     "to": "rnbqkbnr/p1p1pppp/8/1p6/2pP4/4P3/PP3PPP/RNBQKBNR w KQkq -",
+     "comment": "Попытка удержать пешку — ошибка.",
+     "lines": [
+      "qga"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/p1p1pppp/8/1p6/2pP4/4P3/PP3PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "a4",
+     "uci": "a2a4",
+     "to": "rnbqkbnr/p1p1pppp/8/1p6/P1pP4/4P3/1P3PPP/RNBQKBNR b KQkq -",
+     "comment": "Подрыв цепочки b5-c4.",
+     "lines": [
+      "qga"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/p1p1pppp/8/1p6/P1pP4/4P3/1P3PPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "c6",
+     "uci": "c7c6",
+     "to": "rnbqkbnr/p3pppp/2p5/1p6/P1pP4/4P3/1P3PPP/RNBQKBNR w KQkq -",
+     "comment": "Поддерживает b5, но ослабляет диагональ a8–h1.",
+     "lines": [
+      "qga"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/p3pppp/2p5/1p6/P1pP4/4P3/1P3PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "axb5",
+     "uci": "a4b5",
+     "to": "rnbqkbnr/p3pppp/2p5/1P6/2pP4/4P3/1P3PPP/RNBQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "qga"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/p3pppp/2p5/1P6/2pP4/4P3/1P3PPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "cxb5",
+     "uci": "c6b5",
+     "to": "rnbqkbnr/p3pppp/8/1p6/2pP4/4P3/1P3PPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "qga"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/p3pppp/8/1p6/2pP4/4P3/1P3PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Qf3",
+     "uci": "d1f3",
+     "to": "rnbqkbnr/p3pppp/8/1p6/2pP4/4PQ2/1P3PPP/RNB1KBNR b KQkq -",
+     "comment": "Двойной удар: ладья a8 беззащитна, чёрные теряют ладью или коня.",
+     "lines": [
+      "qga"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nd7",
+     "uci": "b8d7",
+     "to": "r1bqkbnr/pppn1ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R w KQkq -",
+     "comment": "Вариант Ханхэма.",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppn1ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bc4",
+     "uci": "f1c4",
+     "to": "r1bqkbnr/pppn1ppp/3p4/4p3/2BPP3/5N2/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "Давление на f7.",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppn1ppp/3p4/4p3/2BPP3/5N2/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Be7",
+     "uci": "f8e7",
+     "to": "r1bqk1nr/pppnbppp/3p4/4p3/2BPP3/5N2/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "Неточность; правильно 4…c6.",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "r1bqk1nr/pppnbppp/3p4/4p3/2BPP3/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "dxe5",
+     "uci": "d4e5",
+     "to": "r1bqk1nr/pppnbppp/3p4/4P3/2B1P3/5N2/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "Пешка e5 под двойной атакой.",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "r1bqk1nr/pppnbppp/3p4/4P3/2B1P3/5N2/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "dxe5",
+     "uci": "d6e5",
+     "to": "r1bqk1nr/pppnbppp/8/4p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "Ошибка — ослабляет f7.",
+     "lines": [
+      "hanham"
+     ]
+    },
+    {
+     "san": "Nxe5",
+     "uci": "d7e5",
+     "to": "r1bqk1nr/ppp1bppp/3p4/4n3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "Размен на e5 тоже не спасает.",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "r1bqk1nr/pppnbppp/8/4p3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qd5",
+     "uci": "d1d5",
+     "to": "r1bqk1nr/pppnbppp/8/3Qp3/2B1P3/5N2/PPP2PPP/RNB1K2R b KQkq -",
+     "comment": "Угроза Qxf7#, чёрные теряют пешку f7 и право рокировки.",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "r1bqk1nr/ppp1bppp/3p4/4n3/2B1P3/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe5",
+     "uci": "f3e5",
+     "to": "r1bqk1nr/ppp1bppp/3p4/4N3/2B1P3/8/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "r1bqk1nr/ppp1bppp/3p4/4N3/2B1P3/8/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "dxe5",
+     "uci": "d6e5",
+     "to": "r1bqk1nr/ppp1bppp/8/4p3/2B1P3/8/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "r1bqk1nr/ppp1bppp/8/4p3/2B1P3/8/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qh5",
+     "uci": "d1h5",
+     "to": "r1bqk1nr/ppp1bppp/8/4p2Q/2B1P3/8/PPP2PPP/RNB1K2R b KQkq -",
+     "comment": "Двойной удар: мат на f7 и нападение на e5 — чёрные теряют материал.",
+     "lines": [
+      "hanham"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp1pp/8/5p2/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bg5",
+     "uci": "c1g5",
+     "to": "rnbqkbnr/ppppp1pp/8/5pB1/3P4/8/PPP1PPPP/RN1QKBNR b KQkq -",
+     "comment": "Слон провоцирует пешечные ходы чёрных.",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp1pp/8/5pB1/3P4/8/PPP1PPPP/RN1QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "h6",
+     "uci": "h7h6",
+     "to": "rnbqkbnr/ppppp1p1/7p/5pB1/3P4/8/PPP1PPPP/RN1QKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp1p1/7p/5pB1/3P4/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bh4",
+     "uci": "g5h4",
+     "to": "rnbqkbnr/ppppp1p1/7p/5p2/3P3B/8/PPP1PPPP/RN1QKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp1p1/7p/5p2/3P3B/8/PPP1PPPP/RN1QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "g5",
+     "uci": "g7g5",
+     "to": "rnbqkbnr/ppppp3/7p/5pp1/3P3B/8/PPP1PPPP/RN1QKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp3/7p/5pp1/3P3B/8/PPP1PPPP/RN1QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bg3",
+     "uci": "h4g3",
+     "to": "rnbqkbnr/ppppp3/7p/5pp1/3P4/6B1/PPP1PPPP/RN1QKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp3/7p/5pp1/3P4/6B1/PPP1PPPP/RN1QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "f4",
+     "uci": "f5f4",
+     "to": "rnbqkbnr/ppppp3/7p/6p1/3P1p2/6B1/PPP1PPPP/RN1QKBNR w KQkq -",
+     "comment": "Ловят слона, но ослабляют короля.",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp3/7p/6p1/3P1p2/6B1/PPP1PPPP/RN1QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "e3",
+     "uci": "e2e3",
+     "to": "rnbqkbnr/ppppp3/7p/6p1/3P1p2/4P1B1/PPP2PPP/RN1QKBNR b KQkq -",
+     "comment": "Освобождает диагональ ферзю d1–h5.",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp3/7p/6p1/3P1p2/4P1B1/PPP2PPP/RN1QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "h5",
+     "uci": "h6h5",
+     "to": "rnbqkbnr/ppppp3/8/6pp/3P1p2/4P1B1/PPP2PPP/RN1QKBNR w KQkq -",
+     "comment": "Угроза h4 с ловлей слона.",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp3/8/6pp/3P1p2/4P1B1/PPP2PPP/RN1QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bd3",
+     "uci": "f1d3",
+     "to": "rnbqkbnr/ppppp3/8/6pp/3P1p2/3BP1B1/PPP2PPP/RN1QK1NR b KQkq -",
+     "comment": "Угроза Bg6#.",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppppp3/8/6pp/3P1p2/3BP1B1/PPP2PPP/RN1QK1NR b KQkq -": {
+   "moves": [
+    {
+     "san": "Rh6",
+     "uci": "h8h6",
+     "to": "rnbqkbn1/ppppp3/7r/6pp/3P1p2/3BP1B1/PPP2PPP/RN1QK1NR w KQq -",
+     "comment": "Защита g6 — но это ошибка.",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbn1/ppppp3/7r/6pp/3P1p2/3BP1B1/PPP2PPP/RN1QK1NR w KQq -": {
+   "moves": [
+    {
+     "san": "Qxh5+",
+     "uci": "d1h5",
+     "to": "rnbqkbn1/ppppp3/7r/6pQ/3P1p2/3BP1B1/PPP2PPP/RN2K1NR b KQq -",
+     "comment": "Жертва ферзя с отвлечением ладьи.",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbn1/ppppp3/7r/6pQ/3P1p2/3BP1B1/PPP2PPP/RN2K1NR b KQq -": {
+   "moves": [
+    {
+     "san": "Rxh5",
+     "uci": "h6h5",
+     "to": "rnbqkbn1/ppppp3/8/6pr/3P1p2/3BP1B1/PPP2PPP/RN2K1NR w KQq -",
+     "comment": "",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkbn1/ppppp3/8/6pr/3P1p2/3BP1B1/PPP2PPP/RN2K1NR w KQq -": {
+   "moves": [
+    {
+     "san": "Bg6#",
+     "uci": "d3g6",
+     "to": "rnbqkbn1/ppppp3/6B1/6pr/3P1p2/4P1B1/PPP2PPP/RN2K1NR b KQq -",
+     "comment": "Мат: поле f7 перекрыто слоном, выходов у короля нет.",
+     "lines": [
+      "dutch"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppppppp/5n2/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "c4",
+     "uci": "c2c4",
+     "to": "rnbqkb1r/pppppppp/5n2/8/2PP4/8/PP2PPPP/RNBQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli",
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppppppp/5n2/8/2PP4/8/PP2PPPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "e6",
+     "uci": "e7e6",
+     "to": "rnbqkb1r/pppp1ppp/4pn2/8/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    },
+    {
+     "san": "e5",
+     "uci": "e7e5",
+     "to": "rnbqkb1r/pppp1ppp/5n2/4p3/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -",
+     "comment": "Будапештский гамбит.",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/4pn2/8/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nf3",
+     "uci": "g1f3",
+     "to": "rnbqkb1r/pppp1ppp/4pn2/8/2PP4/5N2/PP2PPPP/RNBQKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/4pn2/8/2PP4/5N2/PP2PPPP/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "b6",
+     "uci": "b7b6",
+     "to": "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/5N2/PP2PPPP/RNBQKB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/5N2/PP2PPPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "g3",
+     "uci": "g2g3",
+     "to": "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/5NP1/PP2PP1P/RNBQKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/5NP1/PP2PP1P/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bb7",
+     "uci": "c8b7",
+     "to": "rn1qkb1r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP2PP1P/RNBQKB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1qkb1r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP2PP1P/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bg2",
+     "uci": "f1g2",
+     "to": "rn1qkb1r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP2PPBP/RNBQK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1qkb1r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP2PPBP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bb4+",
+     "uci": "f8b4",
+     "to": "rn1qk2r/pbpp1ppp/1p2pn2/8/1bPP4/5NP1/PP2PPBP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1qk2r/pbpp1ppp/1p2pn2/8/1bPP4/5NP1/PP2PPBP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bd2",
+     "uci": "c1d2",
+     "to": "rn1qk2r/pbpp1ppp/1p2pn2/8/1bPP4/5NP1/PP1BPPBP/RN1QK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1qk2r/pbpp1ppp/1p2pn2/8/1bPP4/5NP1/PP1BPPBP/RN1QK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bxd2+",
+     "uci": "b4d2",
+     "to": "rn1qk2r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP1bPPBP/RN1QK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1qk2r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP1bPPBP/RN1QK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qxd2",
+     "uci": "d1d2",
+     "to": "rn1qk2r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP1QPPBP/RN2K2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1qk2r/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP1QPPBP/RN2K2R b KQkq -": {
+   "moves": [
+    {
+     "san": "O-O",
+     "uci": "e8g8",
+     "to": "rn1q1rk1/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP1QPPBP/RN2K2R w KQ -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/pbpp1ppp/1p2pn2/8/2PP4/5NP1/PP1QPPBP/RN2K2R w KQ -": {
+   "moves": [
+    {
+     "san": "Nc3",
+     "uci": "b1c3",
+     "to": "rn1q1rk1/pbpp1ppp/1p2pn2/8/2PP4/2N2NP1/PP1QPPBP/R3K2R b KQ -",
+     "comment": "Разрешает …Ne4.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/pbpp1ppp/1p2pn2/8/2PP4/2N2NP1/PP1QPPBP/R3K2R b KQ -": {
+   "moves": [
+    {
+     "san": "Ne4",
+     "uci": "f6e4",
+     "to": "rn1q1rk1/pbpp1ppp/1p2p3/8/2PPn3/2N2NP1/PP1QPPBP/R3K2R w KQ -",
+     "comment": "Естественно, но ошибочно.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/pbpp1ppp/1p2p3/8/2PPn3/2N2NP1/PP1QPPBP/R3K2R w KQ -": {
+   "moves": [
+    {
+     "san": "Qc2",
+     "uci": "d2c2",
+     "to": "rn1q1rk1/pbpp1ppp/1p2p3/8/2PPn3/2N2NP1/PPQ1PPBP/R3K2R b KQ -",
+     "comment": "Отступление с угрозой Nxe4.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/pbpp1ppp/1p2p3/8/2PPn3/2N2NP1/PPQ1PPBP/R3K2R b KQ -": {
+   "moves": [
+    {
+     "san": "Nxc3",
+     "uci": "e4c3",
+     "to": "rn1q1rk1/pbpp1ppp/1p2p3/8/2PP4/2n2NP1/PPQ1PPBP/R3K2R w KQ -",
+     "comment": "Ошибка; надёжнее 9…f5.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/pbpp1ppp/1p2p3/8/2PP4/2n2NP1/PPQ1PPBP/R3K2R w KQ -": {
+   "moves": [
+    {
+     "san": "Ng5",
+     "uci": "f3g5",
+     "to": "rn1q1rk1/pbpp1ppp/1p2p3/6N1/2PP4/2n3P1/PPQ1PPBP/R3K2R b KQ -",
+     "comment": "Двойная угроза: Qxh7# и Bxb7.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/pbpp1ppp/1p2p3/6N1/2PP4/2n3P1/PPQ1PPBP/R3K2R b KQ -": {
+   "moves": [
+    {
+     "san": "Bxg2",
+     "uci": "b7g2",
+     "to": "rn1q1rk1/p1pp1ppp/1p2p3/6N1/2PP4/2n3P1/PPQ1PPbP/R3K2R w KQ -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    },
+    {
+     "san": "Ne4",
+     "uci": "c3e4",
+     "to": "rn1q1rk1/pbpp1ppp/1p2p3/6N1/2PPn3/6P1/PPQ1PPBP/R3K2R w KQ -",
+     "comment": "Закрывает диагональ, но теряет материал.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/p1pp1ppp/1p2p3/6N1/2PP4/2n3P1/PPQ1PPbP/R3K2R w KQ -": {
+   "moves": [
+    {
+     "san": "Qxh7#",
+     "uci": "c2h7",
+     "to": "rn1q1rk1/p1pp1ppQ/1p2p3/6N1/2PP4/2n3P1/PP2PPbP/R3K2R b KQ -",
+     "comment": "Мат — поле h7 защищено конём g5.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/pbpp1ppp/1p2p3/6N1/2PPn3/6P1/PPQ1PPBP/R3K2R w KQ -": {
+   "moves": [
+    {
+     "san": "Bxe4",
+     "uci": "g2e4",
+     "to": "rn1q1rk1/pbpp1ppp/1p2p3/6N1/2PPB3/6P1/PPQ1PP1P/R3K2R b KQ -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/pbpp1ppp/1p2p3/6N1/2PPB3/6P1/PPQ1PP1P/R3K2R b KQ -": {
+   "moves": [
+    {
+     "san": "Bxe4",
+     "uci": "b7e4",
+     "to": "rn1q1rk1/p1pp1ppp/1p2p3/6N1/2PPb3/6P1/PPQ1PP1P/R3K2R w KQ -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/p1pp1ppp/1p2p3/6N1/2PPb3/6P1/PPQ1PP1P/R3K2R w KQ -": {
+   "moves": [
+    {
+     "san": "Qxe4",
+     "uci": "c2e4",
+     "to": "rn1q1rk1/p1pp1ppp/1p2p3/6N1/2PPQ3/6P1/PP2PP1P/R3K2R b KQ -",
+     "comment": "Снова угроза Qxh7# и нападение на a8.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn1q1rk1/p1pp1ppp/1p2p3/6N1/2PPQ3/6P1/PP2PP1P/R3K2R b KQ -": {
+   "moves": [
+    {
+     "san": "Qxg5",
+     "uci": "d8g5",
+     "to": "rn3rk1/p1pp1ppp/1p2p3/6q1/2PPQ3/6P1/PP2PP1P/R3K2R w KQ -",
+     "comment": "",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "rn3rk1/p1pp1ppp/1p2p3/6q1/2PPQ3/6P1/PP2PP1P/R3K2R w KQ -": {
+   "moves": [
+    {
+     "san": "Qxa8",
+     "uci": "e4a8",
+     "to": "Qn3rk1/p1pp1ppp/1p2p3/6q1/2PP4/6P1/PP2PP1P/R3K2R b KQ -",
+     "comment": "Белые выиграли качество.",
+     "lines": [
+      "monticelli"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bb5",
+     "uci": "f1b5",
+     "to": "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+     "comment": "Испанская партия.",
+     "lines": [
+      "tarrasch",
+      "noahs_ark",
+      "fishing_pole",
+      "mortimer"
+     ]
+    },
+    {
+     "san": "Bc4",
+     "uci": "f1c4",
+     "to": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+     "comment": "Итальянская партия.",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "a6",
+     "uci": "a7a6",
+     "to": "r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "tarrasch",
+      "noahs_ark"
+     ]
+    },
+    {
+     "san": "Nf6",
+     "uci": "g8f6",
+     "to": "r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "fishing_pole",
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Ba4",
+     "uci": "b5a4",
+     "to": "r1bqkbnr/1ppp1ppp/p1n5/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "tarrasch",
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/1ppp1ppp/p1n5/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nf6",
+     "uci": "g8f6",
+     "to": "r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    },
+    {
+     "san": "d6",
+     "uci": "d7d6",
+     "to": "r1bqkbnr/1pp2ppp/p1np4/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+     "comment": "Улучшенная защита Стейница.",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "O-O",
+     "uci": "e1g1",
+     "to": "r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "Nxe4",
+     "uci": "f6e4",
+     "to": "r1bqkb1r/1ppp1ppp/p1n5/4p3/B3n3/5N2/PPPP1PPP/RNBQ1RK1 w kq -",
+     "comment": "Открытый вариант.",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/1ppp1ppp/p1n5/4p3/B3n3/5N2/PPPP1PPP/RNBQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "d4",
+     "uci": "d2d4",
+     "to": "r1bqkb1r/1ppp1ppp/p1n5/4p3/B2Pn3/5N2/PPP2PPP/RNBQ1RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/1ppp1ppp/p1n5/4p3/B2Pn3/5N2/PPP2PPP/RNBQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "b5",
+     "uci": "b7b5",
+     "to": "r1bqkb1r/2pp1ppp/p1n5/1p2p3/B2Pn3/5N2/PPP2PPP/RNBQ1RK1 w kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/2pp1ppp/p1n5/1p2p3/B2Pn3/5N2/PPP2PPP/RNBQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "Bb3",
+     "uci": "a4b3",
+     "to": "r1bqkb1r/2pp1ppp/p1n5/1p2p3/3Pn3/1B3N2/PPP2PPP/RNBQ1RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/2pp1ppp/p1n5/1p2p3/3Pn3/1B3N2/PPP2PPP/RNBQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "d5",
+     "uci": "d7d5",
+     "to": "r1bqkb1r/2p2ppp/p1n5/1p1pp3/3Pn3/1B3N2/PPP2PPP/RNBQ1RK1 w kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/2p2ppp/p1n5/1p1pp3/3Pn3/1B3N2/PPP2PPP/RNBQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "dxe5",
+     "uci": "d4e5",
+     "to": "r1bqkb1r/2p2ppp/p1n5/1p1pP3/4n3/1B3N2/PPP2PPP/RNBQ1RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/2p2ppp/p1n5/1p1pP3/4n3/1B3N2/PPP2PPP/RNBQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "Be6",
+     "uci": "c8e6",
+     "to": "r2qkb1r/2p2ppp/p1n1b3/1p1pP3/4n3/1B3N2/PPP2PPP/RNBQ1RK1 w kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r2qkb1r/2p2ppp/p1n1b3/1p1pP3/4n3/1B3N2/PPP2PPP/RNBQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "c3",
+     "uci": "c2c3",
+     "to": "r2qkb1r/2p2ppp/p1n1b3/1p1pP3/4n3/1BP2N2/PP3PPP/RNBQ1RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r2qkb1r/2p2ppp/p1n1b3/1p1pP3/4n3/1BP2N2/PP3PPP/RNBQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "Be7",
+     "uci": "f8e7",
+     "to": "r2qk2r/2p1bppp/p1n1b3/1p1pP3/4n3/1BP2N2/PP3PPP/RNBQ1RK1 w kq -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r2qk2r/2p1bppp/p1n1b3/1p1pP3/4n3/1BP2N2/PP3PPP/RNBQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "Re1",
+     "uci": "f1e1",
+     "to": "r2qk2r/2p1bppp/p1n1b3/1p1pP3/4n3/1BP2N2/PP3PPP/RNBQR1K1 b kq -",
+     "comment": "Давление на коня e4 по вертикали.",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r2qk2r/2p1bppp/p1n1b3/1p1pP3/4n3/1BP2N2/PP3PPP/RNBQR1K1 b kq -": {
+   "moves": [
+    {
+     "san": "O-O",
+     "uci": "e8g8",
+     "to": "r2q1rk1/2p1bppp/p1n1b3/1p1pP3/4n3/1BP2N2/PP3PPP/RNBQR1K1 w - -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r2q1rk1/2p1bppp/p1n1b3/1p1pP3/4n3/1BP2N2/PP3PPP/RNBQR1K1 w - -": {
+   "moves": [
+    {
+     "san": "Nd4",
+     "uci": "f3d4",
+     "to": "r2q1rk1/2p1bppp/p1n1b3/1p1pP3/3Nn3/1BP5/PP3PPP/RNBQR1K1 b - -",
+     "comment": "Нападение на слона e6.",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r2q1rk1/2p1bppp/p1n1b3/1p1pP3/3Nn3/1BP5/PP3PPP/RNBQR1K1 b - -": {
+   "moves": [
+    {
+     "san": "Qd7",
+     "uci": "d8d7",
+     "to": "r4rk1/2pqbppp/p1n1b3/1p1pP3/3Nn3/1BP5/PP3PPP/RNBQR1K1 w - -",
+     "comment": "Ошибка: ферзь встаёт на одну вертикаль с ферзём белых.",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r4rk1/2pqbppp/p1n1b3/1p1pP3/3Nn3/1BP5/PP3PPP/RNBQR1K1 w - -": {
+   "moves": [
+    {
+     "san": "Nxe6",
+     "uci": "d4e6",
+     "to": "r4rk1/2pqbppp/p1n1N3/1p1pP3/4n3/1BP5/PP3PPP/RNBQR1K1 b - -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r4rk1/2pqbppp/p1n1N3/1p1pP3/4n3/1BP5/PP3PPP/RNBQR1K1 b - -": {
+   "moves": [
+    {
+     "san": "fxe6",
+     "uci": "f7e6",
+     "to": "r4rk1/2pqb1pp/p1n1p3/1p1pP3/4n3/1BP5/PP3PPP/RNBQR1K1 w - -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r4rk1/2pqb1pp/p1n1p3/1p1pP3/4n3/1BP5/PP3PPP/RNBQR1K1 w - -": {
+   "moves": [
+    {
+     "san": "Rxe4",
+     "uci": "e1e4",
+     "to": "r4rk1/2pqb1pp/p1n1p3/1p1pP3/4R3/1BP5/PP3PPP/RNBQ2K1 b - -",
+     "comment": "Пешка d5 связана: 13…dxe4 14.Qxd7.",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r4rk1/2pqb1pp/p1n1p3/1p1pP3/4R3/1BP5/PP3PPP/RNBQ2K1 b - -": {
+   "moves": [
+    {
+     "san": "dxe4",
+     "uci": "d5e4",
+     "to": "r4rk1/2pqb1pp/p1n1p3/1p2P3/4p3/1BP5/PP3PPP/RNBQ2K1 w - -",
+     "comment": "",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r4rk1/2pqb1pp/p1n1p3/1p2P3/4p3/1BP5/PP3PPP/RNBQ2K1 w - -": {
+   "moves": [
+    {
+     "san": "Qxd7",
+     "uci": "d1d7",
+     "to": "r4rk1/2pQb1pp/p1n1p3/1p2P3/4p3/1BP5/PP3PPP/RNB3K1 b - -",
+     "comment": "Белые выиграли ферзя.",
+     "lines": [
+      "tarrasch"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nd4",
+     "uci": "c6d4",
+     "to": "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq -",
+     "comment": "Гамбит Шиллинга: отдаёт пешку e5 и провоцирует жадность.",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/8/4p3/2BnP3/5N2/PPPP1PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe5",
+     "uci": "f3e5",
+     "to": "r1bqkbnr/pppp1ppp/8/4N3/2BnP3/8/PPPP1PPP/RNBQK2R b KQkq -",
+     "comment": "Жадность; правильно 4.Nxd4 или 4.c3.",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/8/4N3/2BnP3/8/PPPP1PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qg5",
+     "uci": "d8g5",
+     "to": "r1b1kbnr/pppp1ppp/8/4N1q1/2BnP3/8/PPPP1PPP/RNBQK2R w KQkq -",
+     "comment": "Двойной удар по e5 и g2.",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1ppp/8/4N1q1/2BnP3/8/PPPP1PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxf7",
+     "uci": "e5f7",
+     "to": "r1b1kbnr/pppp1Npp/8/6q1/2BnP3/8/PPPP1PPP/RNBQK2R b KQkq -",
+     "comment": "Вилка ферзю и ладье — но чёрные быстрее.",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1Npp/8/6q1/2BnP3/8/PPPP1PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qxg2",
+     "uci": "g5g2",
+     "to": "r1b1kbnr/pppp1Npp/8/8/2BnP3/8/PPPP1PqP/RNBQK2R w KQkq -",
+     "comment": "Нападение на ладью h1.",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1Npp/8/8/2BnP3/8/PPPP1PqP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Rf1",
+     "uci": "h1f1",
+     "to": "r1b1kbnr/pppp1Npp/8/8/2BnP3/8/PPPP1PqP/RNBQKR2 b Qkq -",
+     "comment": "",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1Npp/8/8/2BnP3/8/PPPP1PqP/RNBQKR2 b Qkq -": {
+   "moves": [
+    {
+     "san": "Qxe4+",
+     "uci": "g2e4",
+     "to": "r1b1kbnr/pppp1Npp/8/8/2Bnq3/8/PPPP1P1P/RNBQKR2 w Qkq -",
+     "comment": "Шах, слону приходится закрываться.",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1Npp/8/8/2Bnq3/8/PPPP1P1P/RNBQKR2 w Qkq -": {
+   "moves": [
+    {
+     "san": "Be2",
+     "uci": "c4e2",
+     "to": "r1b1kbnr/pppp1Npp/8/8/3nq3/8/PPPPBP1P/RNBQKR2 b Qkq -",
+     "comment": "",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1Npp/8/8/3nq3/8/PPPPBP1P/RNBQKR2 b Qkq -": {
+   "moves": [
+    {
+     "san": "Nf3#",
+     "uci": "d4f3",
+     "to": "r1b1kbnr/pppp1Npp/8/8/4q3/5n2/PPPPBP1P/RNBQKR2 w Qkq -",
+     "comment": "Спёртый мат: слон e2 связан ферзём.",
+     "lines": [
+      "blackburne"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp1ppp/8/4p3/3P4/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "dxe5",
+     "uci": "d4e5",
+     "to": "rnbqkbnr/pppp1ppp/8/4P3/8/8/PPP1PPPP/RNBQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pppp1ppp/8/4P3/8/8/PPP1PPPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nc6",
+     "uci": "b8c6",
+     "to": "r1bqkbnr/pppp1ppp/2n5/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/2n5/4P3/8/8/PPP1PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nf3",
+     "uci": "g1f3",
+     "to": "r1bqkbnr/pppp1ppp/2n5/4P3/8/5N2/PPP1PPPP/RNBQKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pppp1ppp/2n5/4P3/8/5N2/PPP1PPPP/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qe7",
+     "uci": "d8e7",
+     "to": "r1b1kbnr/ppppqppp/2n5/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -",
+     "comment": "Нападение на пешку e5.",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/ppppqppp/2n5/4P3/8/5N2/PPP1PPPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bf4",
+     "uci": "c1f4",
+     "to": "r1b1kbnr/ppppqppp/2n5/4P3/5B2/5N2/PPP1PPPP/RN1QKB1R b KQkq -",
+     "comment": "Естественная защита — но ослабляет b2.",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/ppppqppp/2n5/4P3/5B2/5N2/PPP1PPPP/RN1QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qb4+",
+     "uci": "e7b4",
+     "to": "r1b1kbnr/pppp1ppp/2n5/4P3/1q3B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -",
+     "comment": "Двойной удар: шах и нападение на b2.",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1ppp/2n5/4P3/1q3B2/5N2/PPP1PPPP/RN1QKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bd2",
+     "uci": "f4d2",
+     "to": "r1b1kbnr/pppp1ppp/2n5/4P3/1q6/5N2/PPPBPPPP/RN1QKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1ppp/2n5/4P3/1q6/5N2/PPPBPPPP/RN1QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qxb2",
+     "uci": "b4b2",
+     "to": "r1b1kbnr/pppp1ppp/2n5/4P3/8/5N2/PqPBPPPP/RN1QKB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1ppp/2n5/4P3/8/5N2/PqPBPPPP/RN1QKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bc3",
+     "uci": "d2c3",
+     "to": "r1b1kbnr/pppp1ppp/2n5/4P3/8/2B2N2/PqP1PPPP/RN1QKB1R b KQkq -",
+     "comment": "Нападение на ферзя.",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/pppp1ppp/2n5/4P3/8/2B2N2/PqP1PPPP/RN1QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bb4",
+     "uci": "f8b4",
+     "to": "r1b1k1nr/pppp1ppp/2n5/4P3/1b6/2B2N2/PqP1PPPP/RN1QKB1R w KQkq -",
+     "comment": "Связка слона c3.",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1k1nr/pppp1ppp/2n5/4P3/1b6/2B2N2/PqP1PPPP/RN1QKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qd2",
+     "uci": "d1d2",
+     "to": "r1b1k1nr/pppp1ppp/2n5/4P3/1b6/2B2N2/PqPQPPPP/RN2KB1R b KQkq -",
+     "comment": "Ошибка; правильно 7.Nd4.",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1k1nr/pppp1ppp/2n5/4P3/1b6/2B2N2/PqPQPPPP/RN2KB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bxc3",
+     "uci": "b4c3",
+     "to": "r1b1k1nr/pppp1ppp/2n5/4P3/8/2b2N2/PqPQPPPP/RN2KB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1k1nr/pppp1ppp/2n5/4P3/8/2b2N2/PqPQPPPP/RN2KB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qxc3",
+     "uci": "d2c3",
+     "to": "r1b1k1nr/pppp1ppp/2n5/4P3/8/2Q2N2/PqP1PPPP/RN2KB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1b1k1nr/pppp1ppp/2n5/4P3/8/2Q2N2/PqP1PPPP/RN2KB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qc1#",
+     "uci": "b2c1",
+     "to": "r1b1k1nr/pppp1ppp/2n5/4P3/8/2Q2N2/P1P1PPPP/RNq1KB1R w KQkq -",
+     "comment": "Мат по первой горизонтали.",
+     "lines": [
+      "englund"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n2n2/4N3/4P3/8/PPPP1PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxc6",
+     "uci": "e5c6",
+     "to": "r1bqkb1r/pppp1ppp/2N2n2/8/4P3/8/PPPP1PPP/RNBQKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2N2n2/8/4P3/8/PPPP1PPP/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "dxc6",
+     "uci": "d7c6",
+     "to": "r1bqkb1r/ppp2ppp/2p2n2/8/4P3/8/PPPP1PPP/RNBQKB1R w KQkq -",
+     "comment": "Открываются линии для слонов и ферзя.",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/ppp2ppp/2p2n2/8/4P3/8/PPPP1PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "d3",
+     "uci": "d2d3",
+     "to": "r1bqkb1r/ppp2ppp/2p2n2/8/4P3/3P4/PPP2PPP/RNBQKB1R b KQkq -",
+     "comment": "Защищает e4, но слишком пассивно.",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/ppp2ppp/2p2n2/8/4P3/3P4/PPP2PPP/RNBQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bc5",
+     "uci": "f8c5",
+     "to": "r1bqk2r/ppp2ppp/2p2n2/2b5/4P3/3P4/PPP2PPP/RNBQKB1R w KQkq -",
+     "comment": "Нацеливается на f2.",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bqk2r/ppp2ppp/2p2n2/2b5/4P3/3P4/PPP2PPP/RNBQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bg5",
+     "uci": "c1g5",
+     "to": "r1bqk2r/ppp2ppp/2p2n2/2b3B1/4P3/3P4/PPP2PPP/RN1QKB1R b KQkq -",
+     "comment": "Связка — ошибка!",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bqk2r/ppp2ppp/2p2n2/2b3B1/4P3/3P4/PPP2PPP/RN1QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe4",
+     "uci": "f6e4",
+     "to": "r1bqk2r/ppp2ppp/2p5/2b3B1/4n3/3P4/PPP2PPP/RN1QKB1R w KQkq -",
+     "comment": "Жертва ферзя.",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bqk2r/ppp2ppp/2p5/2b3B1/4n3/3P4/PPP2PPP/RN1QKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bxd8",
+     "uci": "g5d8",
+     "to": "r1bBk2r/ppp2ppp/2p5/2b5/4n3/3P4/PPP2PPP/RN1QKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bBk2r/ppp2ppp/2p5/2b5/4n3/3P4/PPP2PPP/RN1QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bxf2+",
+     "uci": "c5f2",
+     "to": "r1bBk2r/ppp2ppp/2p5/8/4n3/3P4/PPP2bPP/RN1QKB1R w KQkq -",
+     "comment": "Слон забирает f2 с шахом.",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bBk2r/ppp2ppp/2p5/8/4n3/3P4/PPP2bPP/RN1QKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Ke2",
+     "uci": "e1e2",
+     "to": "r1bBk2r/ppp2ppp/2p5/8/4n3/3P4/PPP1KbPP/RN1Q1B1R b kq -",
+     "comment": "",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "r1bBk2r/ppp2ppp/2p5/8/4n3/3P4/PPP1KbPP/RN1Q1B1R b kq -": {
+   "moves": [
+    {
+     "san": "Bg4#",
+     "uci": "c8g4",
+     "to": "r2Bk2r/ppp2ppp/2p5/8/4n1b1/3P4/PPP1KbPP/RN1Q1B1R w kq -",
+     "comment": "Мат двумя слонами и конём.",
+     "lines": [
+      "stafford"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nc3",
+     "uci": "b1c3",
+     "to": "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nf6",
+     "uci": "g8f6",
+     "to": "rnbqkb1r/ppp2ppp/4pn2/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/ppp2ppp/4pn2/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bg5",
+     "uci": "c1g5",
+     "to": "rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR b KQkq -",
+     "comment": "Связка коня f6.",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nbd7",
+     "uci": "b8d7",
+     "to": "r1bqkb1r/pppn1ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR w KQkq -",
+     "comment": "Ставит ловушку.",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppn1ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "cxd5",
+     "uci": "c4d5",
+     "to": "r1bqkb1r/pppn1ppp/4pn2/3P2B1/3P4/2N5/PP2PPPP/R2QKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppn1ppp/4pn2/3P2B1/3P4/2N5/PP2PPPP/R2QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "exd5",
+     "uci": "e6d5",
+     "to": "r1bqkb1r/pppn1ppp/5n2/3p2B1/3P4/2N5/PP2PPPP/R2QKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppn1ppp/5n2/3p2B1/3P4/2N5/PP2PPPP/R2QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxd5",
+     "uci": "c3d5",
+     "to": "r1bqkb1r/pppn1ppp/5n2/3N2B1/3P4/8/PP2PPPP/R2QKBNR b KQkq -",
+     "comment": "Ошибка: белые думают, что конь f6 связан.",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppn1ppp/5n2/3N2B1/3P4/8/PP2PPPP/R2QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nxd5",
+     "uci": "f6d5",
+     "to": "r1bqkb1r/pppn1ppp/8/3n2B1/3P4/8/PP2PPPP/R2QKBNR w KQkq -",
+     "comment": "Связки нет — жертва ферзя!",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppn1ppp/8/3n2B1/3P4/8/PP2PPPP/R2QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bxd8",
+     "uci": "g5d8",
+     "to": "r1bBkb1r/pppn1ppp/8/3n4/3P4/8/PP2PPPP/R2QKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bBkb1r/pppn1ppp/8/3n4/3P4/8/PP2PPPP/R2QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Bb4+",
+     "uci": "f8b4",
+     "to": "r1bBk2r/pppn1ppp/8/3n4/1b1P4/8/PP2PPPP/R2QKBNR w KQkq -",
+     "comment": "Шах: белым придётся отдать ферзя.",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bBk2r/pppn1ppp/8/3n4/1b1P4/8/PP2PPPP/R2QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Qd2",
+     "uci": "d1d2",
+     "to": "r1bBk2r/pppn1ppp/8/3n4/1b1P4/8/PP1QPPPP/R3KBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bBk2r/pppn1ppp/8/3n4/1b1P4/8/PP1QPPPP/R3KBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Bxd2+",
+     "uci": "b4d2",
+     "to": "r1bBk2r/pppn1ppp/8/3n4/3P4/8/PP1bPPPP/R3KBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bBk2r/pppn1ppp/8/3n4/3P4/8/PP1bPPPP/R3KBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Kxd2",
+     "uci": "e1d2",
+     "to": "r1bBk2r/pppn1ppp/8/3n4/3P4/8/PP1KPPPP/R4BNR b kq -",
+     "comment": "",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "r1bBk2r/pppn1ppp/8/3n4/3P4/8/PP1KPPPP/R4BNR b kq -": {
+   "moves": [
+    {
+     "san": "Kxd8",
+     "uci": "e8d8",
+     "to": "r1bk3r/pppn1ppp/8/3n4/3P4/8/PP1KPPPP/R4BNR w - -",
+     "comment": "Чёрные остались с лишней фигурой.",
+     "lines": [
+      "elephant"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/8/3pp3/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "dxe5",
+     "uci": "d4e5",
+     "to": "rnbqkbnr/ppp2ppp/8/3pP3/2P5/8/PP2PPPP/RNBQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/8/3pP3/2P5/8/PP2PPPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "d4",
+     "uci": "d5d4",
+     "to": "rnbqkbnr/ppp2ppp/8/4P3/2Pp4/8/PP2PPPP/RNBQKBNR w KQkq -",
+     "comment": "Клин на d4 стесняет белых.",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/8/4P3/2Pp4/8/PP2PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "e3",
+     "uci": "e2e3",
+     "to": "rnbqkbnr/ppp2ppp/8/4P3/2Pp4/4P3/PP3PPP/RNBQKBNR b KQkq -",
+     "comment": "Неточность: подрыв клина открывает шахи.",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/ppp2ppp/8/4P3/2Pp4/4P3/PP3PPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Bb4+",
+     "uci": "f8b4",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1bPp4/4P3/PP3PPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1bPp4/4P3/PP3PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bd2",
+     "uci": "c1d2",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1bPp4/4P3/PP1B1PPP/RN1QKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1bPp4/4P3/PP1B1PPP/RN1QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "dxe3",
+     "uci": "d4e3",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1bP5/4p3/PP1B1PPP/RN1QKBNR w KQkq -",
+     "comment": "Двойная угроза: exf2+ и exd2+.",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1bP5/4p3/PP1B1PPP/RN1QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bxb4",
+     "uci": "d2b4",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/4p3/PP3PPP/RN1QKBNR b KQkq -",
+     "comment": "Ошибка.",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1BP5/4p3/PP3PPP/RN1QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "exf2+",
+     "uci": "e3f2",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP3pPP/RN1QKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP3pPP/RN1QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Ke2",
+     "uci": "e1e2",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2KpPP/RN1Q1BNR b kq -",
+     "comment": "",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2KpPP/RN1Q1BNR b kq -": {
+   "moves": [
+    {
+     "san": "fxg1=N+",
+     "uci": "f2g1n",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2K1PP/RN1Q1BnR w kq -",
+     "comment": "Превращение в коня с шахом!",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2K1PP/RN1Q1BnR w kq -": {
+   "moves": [
+    {
+     "san": "Ke1",
+     "uci": "e2e1",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP4PP/RN1QKBnR b kq -",
+     "comment": "",
+     "lines": [
+      "lasker"
+     ]
+    },
+    {
+     "san": "Rxg1",
+     "uci": "h1g1",
+     "to": "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2K1PP/RN1Q1BR1 b kq -",
+     "comment": "",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP4PP/RN1QKBnR b kq -": {
+   "moves": [
+    {
+     "san": "Qh4+",
+     "uci": "d8h4",
+     "to": "rnb1k1nr/ppp2ppp/8/4P3/1BP4q/8/PP4PP/RN1QKBnR w kq -",
+     "comment": "Атака на короля: чёрные с лишним материалом и разгромной атакой.",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqk1nr/ppp2ppp/8/4P3/1BP5/8/PP2K1PP/RN1Q1BR1 b kq -": {
+   "moves": [
+    {
+     "san": "Bg4+",
+     "uci": "c8g4",
+     "to": "rn1qk1nr/ppp2ppp/8/4P3/1BP3b1/8/PP2K1PP/RN1Q1BR1 w kq -",
+     "comment": "Шах со вскрытым нападением на ферзя d1 — белые теряют ферзя.",
+     "lines": [
+      "lasker"
+     ]
+    }
+   ]
+  },
+  "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "d4",
+     "uci": "d2d4",
+     "to": "rnbqkbnr/pp1ppppp/8/2p5/3PP3/8/PPP2PPP/RNBQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 3385,
+      "share": 0.006,
+      "white": 0.257,
+      "draws": 0.394,
+      "black": 0.349
+     }
+    }
+   ]
+  },
+  "rnbqkbnr/pp1ppppp/8/2p5/3PP3/8/PPP2PPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "cxd4",
+     "uci": "c5d4",
+     "to": "rnbqkbnr/pp1ppppp/8/8/3pP3/8/PPP2PPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 3471,
+      "share": 0.973,
+      "white": 0.26,
+      "draws": 0.394,
+      "black": 0.347
+     }
+    }
+   ]
+  },
+  "rnbqkbnr/pp1ppppp/8/8/3pP3/8/PPP2PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "c3",
+     "uci": "c2c3",
+     "to": "rnbqkbnr/pp1ppppp/8/8/3pP3/2P5/PP3PPP/RNBQKBNR b KQkq -",
+     "comment": "Гамбит Морра.",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 2804,
+      "share": 0.808,
+      "white": 0.248,
+      "draws": 0.387,
+      "black": 0.365
+     }
+    }
+   ]
+  },
+  "rnbqkbnr/pp1ppppp/8/8/3pP3/2P5/PP3PPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "dxc3",
+     "uci": "d4c3",
+     "to": "rnbqkbnr/pp1ppppp/8/8/4P3/2p5/PP3PPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 1527,
+      "share": 0.545,
+      "white": 0.231,
+      "draws": 0.409,
+      "black": 0.36
+     }
+    }
+   ]
+  },
+  "rnbqkbnr/pp1ppppp/8/8/4P3/2p5/PP3PPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxc3",
+     "uci": "b1c3",
+     "to": "rnbqkbnr/pp1ppppp/8/8/4P3/2N5/PP3PPP/R1BQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 1520,
+      "share": 0.995,
+      "white": 0.231,
+      "draws": 0.41,
+      "black": 0.359
+     }
+    }
+   ]
+  },
+  "rnbqkbnr/pp1ppppp/8/8/4P3/2N5/PP3PPP/R1BQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nc6",
+     "uci": "b8c6",
+     "to": "r1bqkbnr/pp1ppppp/2n5/8/4P3/2N5/PP3PPP/R1BQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 1118,
+      "share": 0.736,
+      "white": 0.212,
+      "draws": 0.438,
+      "black": 0.35
+     }
+    }
+   ]
+  },
+  "r1bqkbnr/pp1ppppp/2n5/8/4P3/2N5/PP3PPP/R1BQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nf3",
+     "uci": "g1f3",
+     "to": "r1bqkbnr/pp1ppppp/2n5/8/4P3/2N2N2/PP3PPP/R1BQKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 1046,
+      "share": 0.936,
+      "white": 0.217,
+      "draws": 0.445,
+      "black": 0.338
+     }
+    }
+   ]
+  },
+  "r1bqkbnr/pp1ppppp/2n5/8/4P3/2N2N2/PP3PPP/R1BQKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "e6",
+     "uci": "e7e6",
+     "to": "r1bqkbnr/pp1p1ppp/2n1p3/8/4P3/2N2N2/PP3PPP/R1BQKB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ],
+     "stats": {
+      "games": 598,
+      "share": 0.533,
+      "white": 0.209,
+      "draws": 0.44,
+      "black": 0.351
+     }
+    }
+   ]
+  },
+  "r1bqkbnr/pp1p1ppp/2n1p3/8/4P3/2N2N2/PP3PPP/R1BQKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bc4",
+     "uci": "f1c4",
+     "to": "r1bqkbnr/pp1p1ppp/2n1p3/8/2B1P3/2N2N2/PP3PPP/R1BQK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/pp1p1ppp/2n1p3/8/2B1P3/2N2N2/PP3PPP/R1BQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qc7",
+     "uci": "d8c7",
+     "to": "r1b1kbnr/ppqp1ppp/2n1p3/8/2B1P3/2N2N2/PP3PPP/R1BQK2R w KQkq -",
+     "comment": "Ферзь на диагонали b8–h2.",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/ppqp1ppp/2n1p3/8/2B1P3/2N2N2/PP3PPP/R1BQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "O-O",
+     "uci": "e1g1",
+     "to": "r1b1kbnr/ppqp1ppp/2n1p3/8/2B1P3/2N2N2/PP3PPP/R1BQ1RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1b1kbnr/ppqp1ppp/2n1p3/8/2B1P3/2N2N2/PP3PPP/R1BQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "Nf6",
+     "uci": "g8f6",
+     "to": "r1b1kb1r/ppqp1ppp/2n1pn2/8/2B1P3/2N2N2/PP3PPP/R1BQ1RK1 w kq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/ppqp1ppp/2n1pn2/8/2B1P3/2N2N2/PP3PPP/R1BQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "Qe2",
+     "uci": "d1e2",
+     "to": "r1b1kb1r/ppqp1ppp/2n1pn2/8/2B1P3/2N2N2/PP2QPPP/R1B2RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/ppqp1ppp/2n1pn2/8/2B1P3/2N2N2/PP2QPPP/R1B2RK1 b kq -": {
+   "moves": [
+    {
+     "san": "Ng4",
+     "uci": "f6g4",
+     "to": "r1b1kb1r/ppqp1ppp/2n1p3/8/2B1P1n1/2N2N2/PP2QPPP/R1B2RK1 w kq -",
+     "comment": "Угроза на h2.",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/ppqp1ppp/2n1p3/8/2B1P1n1/2N2N2/PP2QPPP/R1B2RK1 w kq -": {
+   "moves": [
+    {
+     "san": "h3",
+     "uci": "h2h3",
+     "to": "r1b1kb1r/ppqp1ppp/2n1p3/8/2B1P1n1/2N2N1P/PP2QPP1/R1B2RK1 b kq -",
+     "comment": "Ошибка: белые гонят коня.",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/ppqp1ppp/2n1p3/8/2B1P1n1/2N2N1P/PP2QPP1/R1B2RK1 b kq -": {
+   "moves": [
+    {
+     "san": "Nd4",
+     "uci": "c6d4",
+     "to": "r1b1kb1r/ppqp1ppp/4p3/8/2BnP1n1/2N2N1P/PP2QPP1/R1B2RK1 w kq -",
+     "comment": "Сибирская ловушка: нападение на ферзя.",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/ppqp1ppp/4p3/8/2BnP1n1/2N2N1P/PP2QPP1/R1B2RK1 w kq -": {
+   "moves": [
+    {
+     "san": "Nxd4",
+     "uci": "f3d4",
+     "to": "r1b1kb1r/ppqp1ppp/4p3/8/2BNP1n1/2N4P/PP2QPP1/R1B2RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/ppqp1ppp/4p3/8/2BNP1n1/2N4P/PP2QPP1/R1B2RK1 b kq -": {
+   "moves": [
+    {
+     "san": "Qh2#",
+     "uci": "c7h2",
+     "to": "r1b1kb1r/pp1p1ppp/4p3/8/2BNP1n1/2N4P/PP2QPPq/R1B2RK1 w kq -",
+     "comment": "Конь f3 ушёл — мат на h2.",
+     "lines": [
+      "siberian"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/1pp2ppp/p1np4/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "d4",
+     "uci": "d2d4",
+     "to": "r1bqkbnr/1pp2ppp/p1np4/4p3/B2PP3/5N2/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/1pp2ppp/p1np4/4p3/B2PP3/5N2/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "b5",
+     "uci": "b7b5",
+     "to": "r1bqkbnr/2p2ppp/p1np4/1p2p3/B2PP3/5N2/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/2p2ppp/p1np4/1p2p3/B2PP3/5N2/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Bb3",
+     "uci": "a4b3",
+     "to": "r1bqkbnr/2p2ppp/p1np4/1p2p3/3PP3/1B3N2/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/2p2ppp/p1np4/1p2p3/3PP3/1B3N2/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nxd4",
+     "uci": "c6d4",
+     "to": "r1bqkbnr/2p2ppp/p2p4/1p2p3/3nP3/1B3N2/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/2p2ppp/p2p4/1p2p3/3nP3/1B3N2/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxd4",
+     "uci": "f3d4",
+     "to": "r1bqkbnr/2p2ppp/p2p4/1p2p3/3NP3/1B6/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/2p2ppp/p2p4/1p2p3/3NP3/1B6/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "exd4",
+     "uci": "e5d4",
+     "to": "r1bqkbnr/2p2ppp/p2p4/1p6/3pP3/1B6/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/2p2ppp/p2p4/1p6/3pP3/1B6/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qxd4",
+     "uci": "d1d4",
+     "to": "r1bqkbnr/2p2ppp/p2p4/1p6/3QP3/1B6/PPP2PPP/RNB1K2R b KQkq -",
+     "comment": "Ошибка: правильно 8.Bd5 или 8.c3.",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/2p2ppp/p2p4/1p6/3QP3/1B6/PPP2PPP/RNB1K2R b KQkq -": {
+   "moves": [
+    {
+     "san": "c5",
+     "uci": "c7c5",
+     "to": "r1bqkbnr/5ppp/p2p4/1pp5/3QP3/1B6/PPP2PPP/RNB1K2R w KQkq -",
+     "comment": "Нападение на ферзя.",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/5ppp/p2p4/1pp5/3QP3/1B6/PPP2PPP/RNB1K2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qd5",
+     "uci": "d4d5",
+     "to": "r1bqkbnr/5ppp/p2p4/1ppQ4/4P3/1B6/PPP2PPP/RNB1K2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r1bqkbnr/5ppp/p2p4/1ppQ4/4P3/1B6/PPP2PPP/RNB1K2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Be6",
+     "uci": "c8e6",
+     "to": "r2qkbnr/5ppp/p2pb3/1ppQ4/4P3/1B6/PPP2PPP/RNB1K2R w KQkq -",
+     "comment": "Отгоняет ферзя дальше.",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/5ppp/p2pb3/1ppQ4/4P3/1B6/PPP2PPP/RNB1K2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qc6+",
+     "uci": "d5c6",
+     "to": "r2qkbnr/5ppp/p1Qpb3/1pp5/4P3/1B6/PPP2PPP/RNB1K2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/5ppp/p1Qpb3/1pp5/4P3/1B6/PPP2PPP/RNB1K2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bd7",
+     "uci": "e6d7",
+     "to": "r2qkbnr/3b1ppp/p1Qp4/1pp5/4P3/1B6/PPP2PPP/RNB1K2R w KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/3b1ppp/p1Qp4/1pp5/4P3/1B6/PPP2PPP/RNB1K2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Qd5",
+     "uci": "c6d5",
+     "to": "r2qkbnr/3b1ppp/p2p4/1ppQ4/4P3/1B6/PPP2PPP/RNB1K2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "r2qkbnr/3b1ppp/p2p4/1ppQ4/4P3/1B6/PPP2PPP/RNB1K2R b KQkq -": {
+   "moves": [
+    {
+     "san": "c4",
+     "uci": "c5c4",
+     "to": "r2qkbnr/3b1ppp/p2p4/1p1Q4/2p1P3/1B6/PPP2PPP/RNB1K2R w KQkq -",
+     "comment": "Слон b3 пойман — «Ноев ковчег».",
+     "lines": [
+      "noahs_ark"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/5n2/4p3/2PP4/8/PP2PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "dxe5",
+     "uci": "d4e5",
+     "to": "rnbqkb1r/pppp1ppp/5n2/4P3/2P5/8/PP2PPPP/RNBQKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/5n2/4P3/2P5/8/PP2PPPP/RNBQKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Ng4",
+     "uci": "f6g4",
+     "to": "rnbqkb1r/pppp1ppp/8/4P3/2P3n1/8/PP2PPPP/RNBQKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/8/4P3/2P3n1/8/PP2PPPP/RNBQKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Bf4",
+     "uci": "c1f4",
+     "to": "rnbqkb1r/pppp1ppp/8/4P3/2P2Bn1/8/PP2PPPP/RN1QKBNR b KQkq -",
+     "comment": "",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "rnbqkb1r/pppp1ppp/8/4P3/2P2Bn1/8/PP2PPPP/RN1QKBNR b KQkq -": {
+   "moves": [
+    {
+     "san": "Nc6",
+     "uci": "b8c6",
+     "to": "r1bqkb1r/pppp1ppp/2n5/4P3/2P2Bn1/8/PP2PPPP/RN1QKBNR w KQkq -",
+     "comment": "",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n5/4P3/2P2Bn1/8/PP2PPPP/RN1QKBNR w KQkq -": {
+   "moves": [
+    {
+     "san": "Nf3",
+     "uci": "g1f3",
+     "to": "r1bqkb1r/pppp1ppp/2n5/4P3/2P2Bn1/5N2/PP2PPPP/RN1QKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n5/4P3/2P2Bn1/5N2/PP2PPPP/RN1QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Bb4+",
+     "uci": "f8b4",
+     "to": "r1bqk2r/pppp1ppp/2n5/4P3/1bP2Bn1/5N2/PP2PPPP/RN1QKB1R w KQkq -",
+     "comment": "",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1bqk2r/pppp1ppp/2n5/4P3/1bP2Bn1/5N2/PP2PPPP/RN1QKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nbd2",
+     "uci": "b1d2",
+     "to": "r1bqk2r/pppp1ppp/2n5/4P3/1bP2Bn1/5N2/PP1NPPPP/R2QKB1R b KQkq -",
+     "comment": "",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1bqk2r/pppp1ppp/2n5/4P3/1bP2Bn1/5N2/PP1NPPPP/R2QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qe7",
+     "uci": "d8e7",
+     "to": "r1b1k2r/ppppqppp/2n5/4P3/1bP2Bn1/5N2/PP1NPPPP/R2QKB1R w KQkq -",
+     "comment": "Ферзь на вертикали e.",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1b1k2r/ppppqppp/2n5/4P3/1bP2Bn1/5N2/PP1NPPPP/R2QKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "a3",
+     "uci": "a2a3",
+     "to": "r1b1k2r/ppppqppp/2n5/4P3/1bP2Bn1/P4N2/1P1NPPPP/R2QKB1R b KQkq -",
+     "comment": "Гонит слона — но это ошибка.",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1b1k2r/ppppqppp/2n5/4P3/1bP2Bn1/P4N2/1P1NPPPP/R2QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Ngxe5",
+     "uci": "g4e5",
+     "to": "r1b1k2r/ppppqppp/2n5/4n3/1bP2B2/P4N2/1P1NPPPP/R2QKB1R w KQkq -",
+     "comment": "Отыгрывает пешку и ставит ловушку.",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1b1k2r/ppppqppp/2n5/4n3/1bP2B2/P4N2/1P1NPPPP/R2QKB1R w KQkq -": {
+   "moves": [
+    {
+     "san": "axb4",
+     "uci": "a3b4",
+     "to": "r1b1k2r/ppppqppp/2n5/4n3/1PP2B2/5N2/1P1NPPPP/R2QKB1R b KQkq -",
+     "comment": "Жадность.",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1b1k2r/ppppqppp/2n5/4n3/1PP2B2/5N2/1P1NPPPP/R2QKB1R b KQkq -": {
+   "moves": [
+    {
+     "san": "Nd3#",
+     "uci": "e5d3",
+     "to": "r1b1k2r/ppppqppp/2n5/8/1PP2B2/3n1N2/1P1NPPPP/R2QKB1R w KQkq -",
+     "comment": "Мат: пешка e2 связана ферзём e7.",
+     "lines": [
+      "kieninger"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "O-O",
+     "uci": "e1g1",
+     "to": "r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "fishing_pole"
+     ]
+    },
+    {
+     "san": "d3",
+     "uci": "d2d3",
+     "to": "r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/3P1N2/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "Анти-берлинская система.",
+     "lines": [
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "Ng4",
+     "uci": "f6g4",
+     "to": "r1bqkb1r/pppp1ppp/2n5/1B2p3/4P1n1/5N2/PPPP1PPP/RNBQ1RK1 w kq -",
+     "comment": "Приманка — «удочка».",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n5/1B2p3/4P1n1/5N2/PPPP1PPP/RNBQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "h3",
+     "uci": "h2h3",
+     "to": "r1bqkb1r/pppp1ppp/2n5/1B2p3/4P1n1/5N1P/PPPP1PP1/RNBQ1RK1 b kq -",
+     "comment": "",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n5/1B2p3/4P1n1/5N1P/PPPP1PP1/RNBQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "h5",
+     "uci": "h7h5",
+     "to": "r1bqkb1r/pppp1pp1/2n5/1B2p2p/4P1n1/5N1P/PPPP1PP1/RNBQ1RK1 w kq -",
+     "comment": "Конь остаётся под боем.",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1pp1/2n5/1B2p2p/4P1n1/5N1P/PPPP1PP1/RNBQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "hxg4",
+     "uci": "h3g4",
+     "to": "r1bqkb1r/pppp1pp1/2n5/1B2p2p/4P1P1/5N2/PPPP1PP1/RNBQ1RK1 b kq -",
+     "comment": "Ошибка: вертикаль h открывается.",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1pp1/2n5/1B2p2p/4P1P1/5N2/PPPP1PP1/RNBQ1RK1 b kq -": {
+   "moves": [
+    {
+     "san": "hxg4",
+     "uci": "h5g4",
+     "to": "r1bqkb1r/pppp1pp1/2n5/1B2p3/4P1p1/5N2/PPPP1PP1/RNBQ1RK1 w kq -",
+     "comment": "Угроза gxf3 и атака по h-вертикали.",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1pp1/2n5/1B2p3/4P1p1/5N2/PPPP1PP1/RNBQ1RK1 w kq -": {
+   "moves": [
+    {
+     "san": "Ne1",
+     "uci": "f3e1",
+     "to": "r1bqkb1r/pppp1pp1/2n5/1B2p3/4P1p1/8/PPPP1PP1/RNBQNRK1 b kq -",
+     "comment": "",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1pp1/2n5/1B2p3/4P1p1/8/PPPP1PP1/RNBQNRK1 b kq -": {
+   "moves": [
+    {
+     "san": "Qh4",
+     "uci": "d8h4",
+     "to": "r1b1kb1r/pppp1pp1/2n5/1B2p3/4P1pq/8/PPPP1PP1/RNBQNRK1 w kq -",
+     "comment": "Угроза Qh1#/Qh2#.",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/pppp1pp1/2n5/1B2p3/4P1pq/8/PPPP1PP1/RNBQNRK1 w kq -": {
+   "moves": [
+    {
+     "san": "f3",
+     "uci": "f2f3",
+     "to": "r1b1kb1r/pppp1pp1/2n5/1B2p3/4P1pq/5P2/PPPP2P1/RNBQNRK1 b kq -",
+     "comment": "",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/pppp1pp1/2n5/1B2p3/4P1pq/5P2/PPPP2P1/RNBQNRK1 b kq -": {
+   "moves": [
+    {
+     "san": "g3",
+     "uci": "g4g3",
+     "to": "r1b1kb1r/pppp1pp1/2n5/1B2p3/4P2q/5Pp1/PPPP2P1/RNBQNRK1 w kq -",
+     "comment": "Пешка g3 отнимает у короля поле f2 — угроза Qh2# отражается лишь ценой больших потерь.",
+     "lines": [
+      "fishing_pole"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/3P1N2/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Ne7",
+     "uci": "c6e7",
+     "to": "r1bqkb1r/ppppnppp/5n2/1B2p3/4P3/3P1N2/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "Ловушка Мортимера: пешка e5 «повисла».",
+     "lines": [
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/ppppnppp/5n2/1B2p3/4P3/3P1N2/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nxe5",
+     "uci": "f3e5",
+     "to": "r1bqkb1r/ppppnppp/5n2/1B2N3/4P3/3P4/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "Жадность.",
+     "lines": [
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/ppppnppp/5n2/1B2N3/4P3/3P4/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "c6",
+     "uci": "c7c6",
+     "to": "r1bqkb1r/pp1pnppp/2p2n2/1B2N3/4P3/3P4/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "Нападение на слона.",
+     "lines": [
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pp1pnppp/2p2n2/1B2N3/4P3/3P4/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Ba4",
+     "uci": "b5a4",
+     "to": "r1bqkb1r/pp1pnppp/2p2n2/4N3/B3P3/3P4/PPP2PPP/RNBQK2R b KQkq -",
+     "comment": "Ошибка.",
+     "lines": [
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "r1bqkb1r/pp1pnppp/2p2n2/4N3/B3P3/3P4/PPP2PPP/RNBQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qa5+",
+     "uci": "d8a5",
+     "to": "r1b1kb1r/pp1pnppp/2p2n2/q3N3/B3P3/3P4/PPP2PPP/RNBQK2R w KQkq -",
+     "comment": "Вилка: шах королю и нападение на коня e5 и слона a4.",
+     "lines": [
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/pp1pnppp/2p2n2/q3N3/B3P3/3P4/PPP2PPP/RNBQK2R w KQkq -": {
+   "moves": [
+    {
+     "san": "Nc3",
+     "uci": "b1c3",
+     "to": "r1b1kb1r/pp1pnppp/2p2n2/q3N3/B3P3/2NP4/PPP2PPP/R1BQK2R b KQkq -",
+     "comment": "",
+     "lines": [
+      "mortimer"
+     ]
+    }
+   ]
+  },
+  "r1b1kb1r/pp1pnppp/2p2n2/q3N3/B3P3/2NP4/PPP2PPP/R1BQK2R b KQkq -": {
+   "moves": [
+    {
+     "san": "Qxe5",
+     "uci": "a5e5",
+     "to": "r1b1kb1r/pp1pnppp/2p2n2/4q3/B3P3/2NP4/PPP2PPP/R1BQK2R w KQkq -",
+     "comment": "Чёрные выиграли фигуру.",
+     "lines": [
+      "mortimer"
+     ]
+    }
+   ]
+  }
+ }
+}
